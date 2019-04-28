@@ -1,0 +1,147 @@
+LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263                                 04/28/19  14:17:29
+MS-DOS LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263,  INVOKED BY:
+C:\Raisonance\Ride\Bin\LX51.EXE C:\Meirelles\FEI\Microprocessador_Microcontrolador\BattleShip_Pro&
+ject\Project_Alpha\Project_Alpha.obj TO(C:\Meirelles\FEI\Microprocessador_Microcontrolador\Battle&
+Ship_Project\Project_Alpha\Project_Alpha.aof) LIBPATH(C:\Raisonance\Ride\Lib\51) GENERATEDEPFILE &
+MAP IX RS(256) RSI(128) CSIZE(65536) XSIZE(65536) DEFN(XSTACKLEN,256) DEFN(TIM1_INIT,E8h) CO(0) D&
+T(0) ID(0) XD(0) BI(0) ABSCODEOFFS(0) XMLM(No,C:\Meirelles\FEI\Microprocessador_Microcontrolador\&
+BattleShip_Project\Project_Alpha\Project_Alpha-modules.Standard.xml) XMLF(No,8000,C:\Meirelles\FE&
+I\Microprocessador_Microcontrolador\BattleShip_Project\Project_Alpha\Project_Alpha-flash.Standard&
+.xml) 
+
+
+INPUT MODULES INCLUDED
+  C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALP&
+HA.OBJ(PROJECT_ALPHA)
+
+***WARNING 21: EMPTY RELOCATABLE SEGMENT
+   -SEGMENT: ?PR?PROJECT_ALPHA(PROJECT_ALPHA)
+
+
+LINK MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT&
+_ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA/IDATA    M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+             0003H      00FDH                    *** GAP ***
+    CODE     0100H      000DH     ABSOLUTE       
+             010DH      00F3H                    *** GAP ***
+    CODE     0200H      0003H     ABSOLUTE       
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL RAM storage requirement:  0008H (8)
+    Total EXTERNAL RAM storage requirement:  0000H (0)
+    Total     CODE     storage requirement:  0013H (19)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJE&
+CT_ALPHA.AOF (PROJECT_ALPHA)
+
+SEGMENT                           BI_GROUP            DT_GROUP             ID_GROUP             XD_GROUP
+  +--> CALLED SEGMENT          START    LENGTH     START    LENGTH     START    LENGTH     START    LENGTH
+--------------------------------------------------------------------------------------
+
+SYMBOL TABLE FOR C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_AL&
+PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
+-------------------------------------------------------------------------------------------------&
+-------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             PROJECT_ALPHA
+	D:0082H            SYMBOL             DPL
+	D:0080H            SYMBOL             P0
+	D:0090H            SYMBOL             P1
+	D:00F0H            SYMBOL             B
+	D:00A0H            SYMBOL             P2
+	B:00BCH            SYMBOL             PS
+	D:0081H            SYMBOL             SP
+	D:00B0H            SYMBOL             P3
+	B:00B4H            SYMBOL             T0
+	B:00D6H            SYMBOL             AC
+	C:0200H            SYMBOL             MAIN
+	B:009CH            SYMBOL             REN
+	B:00B5H            SYMBOL             T1
+	B:00D2H            SYMBOL             OV
+	B:00AFH            SYMBOL             EA
+	D:00E0H            SYMBOL             ACC
+	B:00B6H            SYMBOL             WR
+	B:00A9H            SYMBOL             ET0
+	B:00ABH            SYMBOL             ET1
+	B:008DH            SYMBOL             TF0
+	B:008FH            SYMBOL             TF1
+	B:009AH            SYMBOL             RB8
+	D:008CH            SYMBOL             TH0
+	B:00A8H            SYMBOL             EX0
+	B:0088H            SYMBOL             IT0
+	D:008DH            SYMBOL             TH1
+	B:009BH            SYMBOL             TB8
+	B:00B0H            SYMBOL             RXD
+	B:00AAH            SYMBOL             EX1
+	B:008AH            SYMBOL             IT1
+	D:00A8H            SYMBOL             IE
+	B:009FH            SYMBOL             SM0
+	B:00B1H            SYMBOL             TXD
+	B:00D0H            SYMBOL             P
+	D:0099H            SYMBOL             SBUF
+	D:008AH            SYMBOL             TL0
+	D:0087H            SYMBOL             PCON
+	B:009EH            SYMBOL             SM1
+	D:008BH            SYMBOL             TL1
+	C:0100H            SYMBOL             HARD_INIT
+	B:009DH            SYMBOL             SM2
+	D:0098H            SYMBOL             SCON
+	B:00B9H            SYMBOL             PT0
+	D:0089H            SYMBOL             TMOD
+	D:0088H            SYMBOL             TCON
+	B:00BBH            SYMBOL             PT1
+	B:00D3H            SYMBOL             RS0
+	B:00B7H            SYMBOL             RD
+	B:008CH            SYMBOL             TR0
+	B:00D4H            SYMBOL             RS1
+	B:00D5H            SYMBOL             F0
+	B:008EH            SYMBOL             TR1
+	B:00B8H            SYMBOL             PX0
+	B:00ACH            SYMBOL             ES
+	B:00BAH            SYMBOL             PX1
+	D:00B8H            SYMBOL             IP
+	D:00D0H            SYMBOL             PSW
+	B:0098H            SYMBOL             RI
+	B:00B2H            SYMBOL             INT0
+	B:00B3H            SYMBOL             INT1
+	B:00D7H            SYMBOL             CY
+	D:0083H            SYMBOL             DPH
+	B:0099H            SYMBOL             TI
+	B:0089H            SYMBOL             IE0
+	B:008BH            SYMBOL             IE1
+	C:0000H            LINE#              18
+	C:0100H            LINE#              26
+	C:0103H            LINE#              27
+	C:0106H            LINE#              28
+	C:0109H            LINE#              29
+	C:010CH            LINE#              30
+	C:0200H            LINE#              44
+	-------            ENDMOD             PROJECT_ALPHA
+
+UNCALLED SEGMENTS:
+------------------
+    ?PR?PROJECT_ALPHA
+
+----------------------
+SUGGESTED OPTIMIZATION
+----------------------
+Warning: 120 (78H) data bytes in the range [00H-80H] are available for storage.
+         Consider using some of these for 'data' variables in your source files.
+
+
+LINK/LOCATE RUN COMPLETE, 1 WARNING  FOUND.
+

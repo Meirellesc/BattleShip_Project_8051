@@ -1,0 +1,153 @@
+MACRO ASSEMBLER PROJECT_ALPHA                              04/28/19 14:17:29 PAGE     1
+
+
+DOS MACRO ASSEMBLER MA51 V06.20.17.263
+OBJECT MODULE PLACED IN C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.OBJ
+ASSEMBLER INVOKED BY: QUIET GENERATEDEPFILE EP SYNTAX(ASM51) PR XR PL(60) PW(80) DB OJ(C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.OBJ) PIN(C:\RAISONANCE\RIDE\INC;C:\RAISONANCE\RIDE\INC\51) 
+
+LOC     OBJ           LINE    SOURCE
+                         1     ;----------------------------------------------
+                         2     ;--------------Project_BattleShip--------------
+                         3     ;----------------------------------------------
+                         4     ;
+                         5     ;	@Authors: Lucas Meirelles
+                         6     ;			  Pedro Domingues
+                         7     ;
+                         8     ;	@Date: 27/04/2019
+                         9     ;	
+                        10     ;----------------------------------------------
+                        11     
+                        12     ;-------------------LIBS-----------------------
+                        13     $INCLUDE (REG51.INC)
+                        92     
+                        93     ;-------------------INIT-----------------------
+                        94     CODE AT 0000H
+                        95     
+0000    020200          96     			LJMP MAIN
+                        97     	
+------                  98     CODE 
+                        99     
+                       100     ;----------------HARD_INIT--------------------
+                       101     CODE AT 0100H
+                       102     	
+                       103     HARD_INIT: 
+0100    758000         104     			MOV P0,#00H		;Initializing the ports
+0103    759000         105     			MOV P1,#00H
+0106    75A000         106     			MOV P2,#00H
+0109    75B000         107     			MOV P3,#00H
+010C    22             108     			RET
+------                 109     CODE
+                       110     
+                       111     
+                       112     ;----------------SHIP_POS--------------------
+                       113     CODE AT 0300H
+                       114     	
+                       115     			
+------                 116     CODE
+                       117     
+                       118     ;-------------------MAIN-----------------------
+                       119     CODE AT 0200H
+                       120     
+                       121     MAIN: 		
+0200    120100         122     			LCALL HARD_INIT
+                       123     
+                       124     			END
+MACRO ASSEMBLER PROJECT_ALPHA                              04/28/19 14:17:29 PAGE     0
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+DPL. . . . . . . .  D ADDR   0082H   A                          28# 
+P0 . . . . . . . .  D ADDR   0080H   A                          20# 104 
+P1 . . . . . . . .  D ADDR   0090H   A                          21# 105 
+B. . . . . . . . .  D ADDR   00F0H   A                          26# 
+P2 . . . . . . . .  D ADDR   00A0H   A                          22# 106 
+PS . . . . . . . .  B ADDR   00B8H.4 A                          69# 
+SP . . . . . . . .  D ADDR   0081H   A                          27# 
+P3 . . . . . . . .  D ADDR   00B0H   A                          23# 107 
+T0 . . . . . . . .  B ADDR   00B0H.4 A                          78# 
+AC . . . . . . . .  B ADDR   00D0H.6 A                          46# 
+MAIN . . . . . . .  C ADDR   0200H   A                          96 121# 
+REN. . . . . . . .  B ADDR   0098H.4 A                          87# 
+T1 . . . . . . . .  B ADDR   00B0H.5 A                          77# 
+OV . . . . . . . .  B ADDR   00D0H.2 A                          50# 
+EA . . . . . . . .  B ADDR   00A8H.7 A                          62# 
+ACC. . . . . . . .  D ADDR   00E0H   A                          25# 
+WR . . . . . . . .  B ADDR   00B0H.6 A                          76# 
+ET0. . . . . . . .  B ADDR   00A8H.1 A                          66# 
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          64# 
+TF0. . . . . . . .  B ADDR   0088H.5 A                          55# 
+TF1. . . . . . . .  B ADDR   0088H.7 A                          53# 
+RB8. . . . . . . .  B ADDR   0098H.2 A                          89# 
+TH0. . . . . . . .  D ADDR   008CH   A                          35# 
+EX0. . . . . . . .  B ADDR   00A8H.0 A                          67# 
+IT0. . . . . . . .  B ADDR   0088H.0 A                          60# 
+TH1. . . . . . . .  D ADDR   008DH   A                          36# 
+TB8. . . . . . . .  B ADDR   0098H.3 A                          88# 
+RXD. . . . . . . .  B ADDR   00B0H.0 A                          82# 
+EX1. . . . . . . .  B ADDR   00A8H.2 A                          65# 
+IT1. . . . . . . .  B ADDR   0088H.2 A                          58# 
+IE . . . . . . . .  D ADDR   00A8H   A                          37# 
+SM0. . . . . . . .  B ADDR   0098H.7 A                          84# 
+TXD. . . . . . . .  B ADDR   00B0H.1 A                          81# 
+P. . . . . . . . .  B ADDR   00D0H.0 A                          51# 
+SBUF . . . . . . .  D ADDR   0099H   A                          40# 
+TL0. . . . . . . .  D ADDR   008AH   A                          33# 
+PCON . . . . . . .  D ADDR   0087H   A                          30# 
+SM1. . . . . . . .  B ADDR   0098H.6 A                          85# 
+TL1. . . . . . . .  D ADDR   008BH   A                          34# 
+HARD_INIT. . . . .  C ADDR   0100H   A                          103# 122 
+SM2. . . . . . . .  B ADDR   0098H.5 A                          86# 
+SCON . . . . . . .  D ADDR   0098H   A                          39# 
+PT0. . . . . . . .  B ADDR   00B8H.1 A                          72# 
+TMOD . . . . . . .  D ADDR   0089H   A                          32# 
+TCON . . . . . . .  D ADDR   0088H   A                          31# 
+PT1. . . . . . . .  B ADDR   00B8H.3 A                          70# 
+RS0. . . . . . . .  B ADDR   00D0H.3 A                          49# 
+RD . . . . . . . .  B ADDR   00B0H.7 A                          75# 
+TR0. . . . . . . .  B ADDR   0088H.4 A                          56# 
+RS1. . . . . . . .  B ADDR   00D0H.4 A                          48# 
+F0 . . . . . . . .  B ADDR   00D0H.5 A                          47# 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          54# 
+PX0. . . . . . . .  B ADDR   00B8H.0 A                          73# 
+ES . . . . . . . .  B ADDR   00A8H.4 A                          63# 
+PX1. . . . . . . .  B ADDR   00B8H.2 A                          71# 
+IP . . . . . . . .  D ADDR   00B8H   A                          38# 
+PSW. . . . . . . .  D ADDR   00D0H   A                          24# 
+RI . . . . . . . .  B ADDR   0098H.0 A                          91# 
+INT0 . . . . . . .  B ADDR   00B0H.2 A                          80# 
+MACRO ASSEMBLER PROJECT_ALPHA                              04/28/19 14:17:29 PAGE     1
+
+
+DOS MACRO ASSEMBLER MA51 V06.20.17.263
+OBJECT MODULE PLACED IN C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.OBJ
+ASSEMBLER INVOKED BY: QUIET GENERATEDEPFILE EP SYNTAX(ASM51) PR XR PL(60) PW(80) DB OJ(C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.OBJ) PIN(C:\RAISONANCE\RIDE\INC;C:\RAISONANCE\RIDE\INC\51) 
+
+LOC     OBJ           LINE    SOURCE
+?PR?PROJECT_ALPHA.  C SEG    0000H      REL=UNIT                98# 109 116 
+INT1 . . . . . . .  B ADDR   00B0H.3 A                          79# 
+CY . . . . . . . .  B ADDR   00D0H.7 A                          45# 
+DPH. . . . . . . .  D ADDR   0083H   A                          29# 
+TI . . . . . . . .  B ADDR   0098H.1 A                          90# 
+IE0. . . . . . . .  B ADDR   0088H.1 A                          59# 
+IE1. . . . . . . .  B ADDR   0088H.3 A                          57# 
+PROJECT_ALPHA. . .  N NUMB   -----
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     19    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)
