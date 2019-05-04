@@ -1,25 +1,24 @@
-LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263                                 04/28/19  14:17:29
+LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263                                 05/03/19  16:45:41
 MS-DOS LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263,  INVOKED BY:
-C:\Raisonance\Ride\Bin\LX51.EXE C:\Meirelles\FEI\Microprocessador_Microcontrolador\BattleShip_Pro&
-ject\Project_Alpha\Project_Alpha.obj TO(C:\Meirelles\FEI\Microprocessador_Microcontrolador\Battle&
-Ship_Project\Project_Alpha\Project_Alpha.aof) LIBPATH(C:\Raisonance\Ride\Lib\51) GENERATEDEPFILE &
-MAP IX RS(256) RSI(128) CSIZE(65536) XSIZE(65536) DEFN(XSTACKLEN,256) DEFN(TIM1_INIT,E8h) CO(0) D&
-T(0) ID(0) XD(0) BI(0) ABSCODEOFFS(0) XMLM(No,C:\Meirelles\FEI\Microprocessador_Microcontrolador\&
-BattleShip_Project\Project_Alpha\Project_Alpha-modules.Standard.xml) XMLF(No,8000,C:\Meirelles\FE&
-I\Microprocessador_Microcontrolador\BattleShip_Project\Project_Alpha\Project_Alpha-flash.Standard&
-.xml) 
+C:\Raisonance\Ride\Bin\LX51.EXE C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Pr&
+oject_Alpha.obj TO(C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Project_Alpha.a&
+of) LIBPATH(C:\Raisonance\Ride\Lib\51) GENERATEDEPFILE MAP IX RS(256) RSI(128) CSIZE(65536) XSIZE&
+(65536) DEFN(XSTACKLEN,256) DEFN(TIM1_INIT,E8h) CO(0) DT(0) ID(0) XD(0) BI(0) ABSCODEOFFS(0) XMLM&
+(No,C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Project_Alpha-modules.Standard&
+.xml) XMLF(No,8000,C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Project_Alpha-f&
+lash.Standard.xml) 
 
 
 INPUT MODULES INCLUDED
-  C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALP&
-HA.OBJ(PROJECT_ALPHA)
+  C:\USERS\ZURG\DOCUMENTS\LUCAS\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.OBJ(PROJECT_ALPHA)&
+
 
 ***WARNING 21: EMPTY RELOCATABLE SEGMENT
    -SEGMENT: ?PR?PROJECT_ALPHA(PROJECT_ALPHA)
 
 
-LINK MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT&
-_ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
+LINK MAP OF MODULE: C:\USERS\ZURG\DOCUMENTS\LUCAS\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.&
+AOF (PROJECT_ALPHA)
 
     TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
     ----     ----       ------    ----------     ------------
@@ -33,26 +32,36 @@ _ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
     CODE     0100H      000DH     ABSOLUTE       
              010DH      00F3H                    *** GAP ***
     CODE     0200H      0003H     ABSOLUTE       
+             0203H      01FDH                    *** GAP ***
+    CODE     0400H      000FH     ABSOLUTE       
+             040FH      00F1H                    *** GAP ***
+    CODE     0500H      000FH     ABSOLUTE       
+             050FH      00F1H                    *** GAP ***
+    CODE     0600H      000CH     ABSOLUTE       
+             060CH      00F4H                    *** GAP ***
+    CODE     0700H      000CH     ABSOLUTE       
+             070CH      00F4H                    *** GAP ***
+    CODE     0800H      0005H     ABSOLUTE       
 
 EXECUTABLE SUMMARY:
 -------------------
     Total INTERNAL RAM storage requirement:  0008H (8)
     Total EXTERNAL RAM storage requirement:  0000H (0)
-    Total     CODE     storage requirement:  0013H (19)
+    Total     CODE     storage requirement:  004EH (78)
 Note:  Summary does not include dynamic stack requirements
 
 
-REFERENCE MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJE&
-CT_ALPHA.AOF (PROJECT_ALPHA)
+REFERENCE MAP OF MODULE: C:\USERS\ZURG\DOCUMENTS\LUCAS\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF (PROJECT&
+_ALPHA)
 
 SEGMENT                           BI_GROUP            DT_GROUP             ID_GROUP             XD_GROUP
   +--> CALLED SEGMENT          START    LENGTH     START    LENGTH     START    LENGTH     START    LENGTH
 --------------------------------------------------------------------------------------
 
-SYMBOL TABLE FOR C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\PROJECT_AL&
-PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
+SYMBOL TABLE FOR C:\USERS\ZURG\DOCUMENTS\LUCAS\BATTLESHIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF&
+(PROJECT_ALPHA)
 -------------------------------------------------------------------------------------------------&
--------------------------------------
+----------------
 
     VALUE              TYPE               NAME
     -----              ----               ----
@@ -66,13 +75,16 @@ PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	B:00BCH            SYMBOL             PS
 	D:0081H            SYMBOL             SP
 	D:00B0H            SYMBOL             P3
+	C:070BH            SYMBOL             BR_1
 	B:00B4H            SYMBOL             T0
 	B:00D6H            SYMBOL             AC
 	C:0200H            SYMBOL             MAIN
 	B:009CH            SYMBOL             REN
 	B:00B5H            SYMBOL             T1
 	B:00D2H            SYMBOL             OV
+	C:0500H            SYMBOL             BD
 	B:00AFH            SYMBOL             EA
+	C:040EH            SYMBOL             BU_1
 	D:00E0H            SYMBOL             ACC
 	B:00B6H            SYMBOL             WR
 	B:00A9H            SYMBOL             ET0
@@ -84,6 +96,7 @@ PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	B:00A8H            SYMBOL             EX0
 	B:0088H            SYMBOL             IT0
 	D:008DH            SYMBOL             TH1
+	C:0600H            SYMBOL             BL
 	B:009BH            SYMBOL             TB8
 	B:00B0H            SYMBOL             RXD
 	B:00AAH            SYMBOL             EX1
@@ -100,15 +113,19 @@ PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	C:0100H            SYMBOL             HARD_INIT
 	B:009DH            SYMBOL             SM2
 	D:0098H            SYMBOL             SCON
+	C:0700H            SYMBOL             BR
 	B:00B9H            SYMBOL             PT0
 	D:0089H            SYMBOL             TMOD
 	D:0088H            SYMBOL             TCON
+	C:0800H            SYMBOL             BS
 	B:00BBH            SYMBOL             PT1
 	B:00D3H            SYMBOL             RS0
+	C:050EH            SYMBOL             BD_1
 	B:00B7H            SYMBOL             RD
 	B:008CH            SYMBOL             TR0
 	B:00D4H            SYMBOL             RS1
 	B:00D5H            SYMBOL             F0
+	C:0400H            SYMBOL             BU
 	B:008EH            SYMBOL             TR1
 	B:00B8H            SYMBOL             PX0
 	B:00ACH            SYMBOL             ES
@@ -121,6 +138,7 @@ PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	B:00D7H            SYMBOL             CY
 	D:0083H            SYMBOL             DPH
 	B:0099H            SYMBOL             TI
+	C:060BH            SYMBOL             BL_1
 	B:0089H            SYMBOL             IE0
 	B:008BH            SYMBOL             IE1
 	C:0000H            LINE#              18
@@ -129,7 +147,42 @@ PHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	C:0106H            LINE#              28
 	C:0109H            LINE#              29
 	C:010CH            LINE#              30
-	C:0200H            LINE#              44
+	C:0400H            LINE#              47
+	C:0402H            LINE#              48
+	C:0403H            LINE#              49
+	C:0405H            LINE#              50
+	C:0407H            LINE#              51
+	C:0409H            LINE#              52
+	C:040AH            LINE#              53
+	C:040CH            LINE#              54
+	C:040EH            LINE#              55
+	C:0500H            LINE#              62
+	C:0502H            LINE#              63
+	C:0503H            LINE#              64
+	C:0505H            LINE#              65
+	C:0507H            LINE#              66
+	C:0509H            LINE#              67
+	C:050AH            LINE#              68
+	C:050CH            LINE#              69
+	C:050EH            LINE#              70
+	C:0600H            LINE#              77
+	C:0602H            LINE#              78
+	C:0604H            LINE#              79
+	C:0605H            LINE#              80
+	C:0607H            LINE#              81
+	C:0609H            LINE#              82
+	C:060BH            LINE#              83
+	C:0700H            LINE#              90
+	C:0702H            LINE#              91
+	C:0704H            LINE#              92
+	C:0705H            LINE#              93
+	C:0707H            LINE#              94
+	C:0709H            LINE#              95
+	C:070BH            LINE#              96
+	C:0800H            LINE#              103
+	C:0802H            LINE#              104
+	C:0804H            LINE#              105
+	C:0200H            LINE#              114
 	-------            ENDMOD             PROJECT_ALPHA
 
 UNCALLED SEGMENTS:
