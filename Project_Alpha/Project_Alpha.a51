@@ -111,18 +111,124 @@ code
 code at 0900h
 
 BF:		MOV PSW, #00h					;Inicializando PSW -> Banco:0
-		MOV A,50h
-		MOV A,#40h
-		MOV R1,#05h
+		MOV A,50h                       ;Armazenando o end 50h [cursor] em (A)
+		MOV R0,#40h                     ;Armazenando o end 40h [primeiro navio] em (R0)
+		MOV R1,#05h                     ;Armazenando a quantidade de navios em (R1)
 		
-BF_1:	CLR C
-		SUBB A,@R0
-		JNZ BF_2
-		INC 60h
-		MOV A,@R0
-		;SET ACC.7
+BF_1:	CLR C                           ;Limpa Carry
+		SUBB A,@R0                      ;(A) - (R0)
+		JNZ BF_2                        ;Caso (Z) = 0 [errou o navio], pula para a sub-rotina BF_2
+		INC 60h                         ;Incrementa a pontuação
+		MOV A,@R0                       ;Pega o endereço no navio
+		SETB ACC.7                      ;Set '1' [flag] no bit mais significativo no end do navio
+        MOV @R0,A                       ;Retorna o valor para o end do navio 
+        ;LCALL OLED                     ;Chama a sub-rotina para manter aceso o Led do navio
 
-BF_2:
+BF_2:   INC R0                          ;Incrementa o buffer do (R0) para checar outros navios
+        DJNZ R1, BF_1                   ;Decrementa (R1) e verifica se checou a quantidade de navios
+        DEC 70h                         ;Decrementa (70h) [numero de tentativas]
+        RET                             
+        
+code
+
+;----------------XY_P--------------------
+code at 0A00h
+    
+XYP:    MOV A,90h                       ;Armazena end (90h) [buffer conversão] em (A)
+        ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
+        ADD A,#95h                      ;(A) + (95h) [end de mem inicial das portas]
+        MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
+        
+        MOV A,90h                       ;Armazena end (90h) [buffer conversão] em (A)
+        ANL A,#70h                      ;Aplica máscara em (A) [0111 0000]
+        SWAP A                          ;Troca o MSB com LSB de (A)
+        MOV R1,A                        ;Armazena (A) em (R1)
+        MOV R2,#01h                     ;Armazena #01h em (R2)
+        
+        JZ, XYP_2                       ;Caso (Z)=0 de (A) pula para XYP_2
+        ;ERROR!!!!
+        ;JZ R1, XYP_2                    ;Caso (Z)=0 de (R1) pula para XYP_2    [CORRECT?? [JZ, XYP_2]]
+        ;ERROR!!!!
+        
+        
+XYP_1:  MOV A,R2                        ;Armazena (R2) em (A)
+        RL A                            ;Rotaciona a esquerda (A)
+        MOV R2,A                        ;Armazena (A) em (R2)
+        DJNZ R1,XYP_1                   ;Decrementa (R1) e caso (Z)!=0 pula para XYP_1
+        
+XYP_2:  MOV A,R2                        ;Armazena (R2) em (A)
+        ORL A,@R0                       ;Realiza "OR" entre((R0)) e (A)
+        MOV @R0,A                       ;Armazena (A) em ((R0))
+        RET
+        
+code
+
+;------------------CURSOR---------------------
+code at 0B00h
+
+CURSOR: MOV A,50h                       ;Armazena end (90h) [buffer cursor XY] em (A)
+        ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
+        ADD A,#95h                      ;(A) + (95h) [end inicial das portas]
+        MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
+        
+        MOV A,50h                       ;Armazena end (90h) [buffer cursor XY] em (A)
+        ANL A,#70h                      ;Aplica máscara em (A) [0111 0000]
+        SWAP A                          ;Troca o MSB com LSB de (A)
+        MOV R1,A                        ;Armazena (A) em (R1)
+        MOV R2,#01h                     ;Armazena #01h em (R2)
+        
+        JZ, CURSOR_2                    ;Caso (Z)=0 de (A) pula para CURSOR_2
+        ;ERROR!!!!
+        ;JZ R1, XYP_2                    ;Caso (Z)=0 de (R1) pula para CURSOR_2    [CORRECT?? [JZ, CURSOR_2]]
+        ;ERROR!!!!
+        
+CURSOR_1:
+        MOV A,R2                        ;Armazena (R2) em (A)
+        RL A                            ;Rotaciona a esquerda (A)
+        MOV R2,A                        ;Armazena (A) em (R2)
+        DJNZ R1,CURSOR_1                ;Decrementa (R1) e caso (Z)!=0 pula para CURSOR_1
+        
+CURSOR_2:
+        MOV 51h,R2                      ;Armazena (R2) em (51h) [end de leds (modo->P)]
+        MOV 52h,R0                      ;Armazena (R2) em (52h) [end de porta (modo->P)] 
+        LCALL BLINK                     ;Chama sub-rotina BLINK
+        RET
+code
+
+;-------------------BLINK---------------------
+code at 0C00h
+
+BLINK:  MOV R0,52h                      ;Armazena (52h) [end de porta (modo->P)] em (R0)
+        MOV A,@R0                       ;Armazena ((R0)) em (A)
+        MOV R0,A                        ;Armazena (A) em (R0)
+        ORL A,51h                       ;(A) [end de porta (modo->P)]  OR (51h) [end de leds (modo->P)]
+        
+        MOV 95h,A                       ;Retorna o valor de (A) em (95h)
+       ;MOV R0,A [PODE SER?]            ;PQ 95h???? E os end 96h e 97h????
+                                        
+        ;Atualiza Portas [SUB-ROTINA???]
+        MOV P0,95h                      ;Atualiza Porta 0
+        MOV P1,96h                      ;Atualiza Porta 1
+        MOV P2,97h                      ;Atualiza Porta 2
+        
+        LCALL WAIT                      ;Chama sub-rotina WAIT (0,5s)
+        MOV 95h,R0                      ;PRA QUE??
+        RET
+
+code
+
+;----------------WAIT [0,5s]------------------
+code at 0D00h
+
+;DEFINIR OS VALORES DAS CONSTANTES DE R0 E R1 PARA DAR 0,5s
+
+WAIT:   MOV R0,#0FFh                    ;Define constante para (R0)
+
+WAIT_1: MOV R1,#0FFh                    ;Define constante para (R1)
+        DJNZ R1,$                       ;Decrementa (R1). Caso (Z)!=0 pula para a própria linha
+        DJNZ R0,WAIT_1                  ;Decrementa (R0). Caso (Z)!=0 pula para WAIT_1
+        RET
+
 code
 
 ;-------------------MAIN----------------------
