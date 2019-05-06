@@ -146,10 +146,6 @@ XYP:    MOV A,90h                       ;Armazena end (90h) [buffer conversão] e
         MOV R2,#01h                     ;Armazena #01h em (R2)
         
         JZ, XYP_2                       ;Caso (Z)=0 de (A) pula para XYP_2
-        ;ERROR!!!!
-        ;JZ R1, XYP_2                    ;Caso (Z)=0 de (R1) pula para XYP_2    [CORRECT?? [JZ, XYP_2]]
-        ;ERROR!!!!
-        
         
 XYP_1:  MOV A,R2                        ;Armazena (R2) em (A)
         RL A                            ;Rotaciona a esquerda (A)
@@ -178,9 +174,6 @@ CURSOR: MOV A,50h                       ;Armazena end (90h) [buffer cursor XY] e
         MOV R2,#01h                     ;Armazena #01h em (R2)
         
         JZ, CURSOR_2                    ;Caso (Z)=0 de (A) pula para CURSOR_2
-        ;ERROR!!!!
-        ;JZ R1, XYP_2                    ;Caso (Z)=0 de (R1) pula para CURSOR_2    [CORRECT?? [JZ, CURSOR_2]]
-        ;ERROR!!!!
         
 CURSOR_1:
         MOV A,R2                        ;Armazena (R2) em (A)

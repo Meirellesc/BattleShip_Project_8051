@@ -1,5 +1,5 @@
 [Application]
-ApplicationPath=C:\Meirelles\FEI\Microprocessador_Microcontrolador\BattleShip_Project\BattleShip_Project\Project_Alpha\Project_Alpha.aof
+ApplicationPath=C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Project_Alpha.aof
 DebugTool=SIM-51
 CodeSize=0x10000
 XDataSize=0x10000
