@@ -1,5 +1,5 @@
 [Application]
-ApplicationPath=C:\Users\zurg\Documents\Lucas\BattleShip_Project\Project_Alpha\Project_Alpha.aof
+ApplicationPath=C:\Meirelles\FEI\Microprocessador_Microcontrolador\BattleShip_Project\BattleShip_Project\Project_Alpha\Project_Alpha.aof
 DebugTool=SIM-51
 CodeSize=0x10000
 XDataSize=0x10000
@@ -23,5 +23,14 @@ StartupSymb=main
 Path=
 [SIM-51]
 Crystal=12.000
+NoFast=1
+isHex=1
 [General]
 FreqXTal=12.000
+[Monitoring]
+Expressions=
+NbExpr=0
+State=0
+[AT89S8253\UART]
+fEnable-1=0
+ParityCOM-1=-1
