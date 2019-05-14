@@ -1,0 +1,479 @@
+MACRO ASSEMBLER PROJECT_ALPHA                              05/13/19 21:49:41 PAGE     1
+
+
+DOS MACRO ASSEMBLER MA51 V06.18.15.328
+OBJECT MODULE PLACED IN C:\ALUNOS\NADA AQUI\PROJECT_ALPHA.OBJ
+ASSEMBLER INVOKED BY: QUIET GENERATEDEPFILE EP SYNTAX(ASM51) PR XR PL(60) PW(80) DB OJ(C:\ALUNOS\NADA AQUI\PROJECT_ALPHA.OBJ) PIN(C:\RAISONANCE\RIDE\INC;C:\RAISONANCE\RIDE\INC\51) 
+
+LOC     OBJ           LINE    SOURCE
+                         1     ;----------------------------------------------
+                         2     ;--------------Project_BattleShip--------------
+                         3     ;----------------------------------------------
+                         4     ;
+                         5     ;	@Authors: Lucas Meirelles
+                         6     ;			  Pedro Domingues
+                         7     ;
+                         8     ;	@Date: 27/04/2019
+                         9     ;	
+                        10     ;----------------------------------------------
+                        11     
+                        12     ;-------------------LIBS-----------------------
+                        13     $INCLUDE (REG51.INC)
+                        92     
+                        93     ;-------------------------------
+                        94     ;-------------MAIN--------------
+                        95     ;-------------------------------
+                        96     CODE AT 0000H
+                        97     
+0000    020200          98             LJMP MAIN
+                        99     
+------                 100     CODE 
+                       101     
+                       102     ;----------------HARD_INIT--------------------
+                       103     CODE AT 0100H
+                       104     	
+                       105     HARD_INIT: 
+0100    758000         106             MOV P0,#00H			;Initializing the ports
+0103    759000         107             MOV P1,#00H
+0106    75A000         108             MOV P2,#00H
+0109    75B0FF         109             MOV P3,#0FFH
+010C    22             110             RET
+------                 111     CODE
+                       112     
+                       113     
+                       114     ;----------------SHIP_POS--------------------
+                       115     CODE AT 0300H
+                       116     	
+                       117     			
+------                 118     CODE
+                       119     
+                       120     ;---------------------------------------------
+                       121     ;----------------JOYSTICK---------------------
+                       122     ;---------------------------------------------
+                       123     
+                       124     ;----------------BUTTOM_UP--------------------
+                       125     CODE AT 0400H
+                       126     
+0400    E550           127     BU: 		MOV A,50H					;Armazenando a posição em (A)
+0402    C3             128     		CLR C						;Limpando o Carry
+MACRO ASSEMBLER PROJECT_ALPHA                    05/13/19  21:49:41 PAGE     2
+                     
+0403    9410           129     		SUBB A, #10H				;Subtraindo (A)-#10h -> para subir o cursor
+0405    4007           130     		JC BU_1						;Caso (A) < 10 -> o cursor está na borda superior [retorna]
+0407    E550           131     		MOV A,50H					;Armazenando a posição em (A)
+0409    C3             132     		CLR C						;Limpando o Carry
+040A    9410           133     		SUBB A, #10H				;Subtraindo (A)-#10h -> para subir o cursor
+040C    F550           134     		MOV 50H,A					;Carrega o end. (50h) o novo valor do cursor
+040E    22             135     BU_1: 	RET
+                       136     	
+------                 137     CODE 
+                       138     
+                       139     ;----------------BUTTOM_DOWN--------------------
+                       140     CODE AT 0500H
+                       141     
+0500    E550           142     BD: 		MOV A,50H					;Armazenando a posição em (A)
+0502    C3             143     		CLR C						;Limpando o Carry
+0503    9470           144     		SUBB A, #70H				;Subtraindo (A)-#70h -> para descer o cursor
+0505    5006           145     		JNC BD_1					;Caso (A) >= 70 -> o cursor está na borda inferior [retorna]
+0507    E550           146     		MOV A,50H					;Armazenando a posição em (A)
+0509    2410           147     		ADD A, #10H  				;Subtraindo (A)-#70h -> para descer o cursor
+050B    F550           148     		MOV 50H,A					;Carrega o end. (50h) o novo valor do cursor
+050D    22             149     BD_1: 	RET
+                       150     
+------                 151     CODE
+                       152     
+                       153     ;----------------BUTTOM_LEFT--------------------
+                       154     CODE AT 0600H
+                       155     
+0600    E550           156     BL: 		MOV A,50H					;Armazenando a posição em (A)
+0602    5403           157     		ANL A,#03H					;(A) AND #03h -> Máscara
+0604    C3             158     		CLR C						;Limpando o Carry
+0605    9401           159     		SUBB A, #01H				;Subtraindo (A)-#01h -> para mover o cursor a esquerda
+0607    4002           160     		JC BL_1						;Caso (A) < 01 -> o cursor está na borda esquerda [retorna]
+0609    1550           161     		DEC 50H						;Decrementa o conteúdo de (50h)
+060B    22             162     BL_1: 	RET
+                       163     
+------                 164     CODE
+                       165     
+                       166     ;----------------BUTTOM_RIGHT--------------------
+                       167     CODE AT 0700H
+                       168     
+0700    E550           169     BR: 		MOV A,50H					;Armazenando a posição em (A)
+0702    5403           170     		ANL A,#03H					;(A) AND #03h -> Máscara
+0704    C3             171     		CLR C						;Limpando o Carry
+0705    9402           172     		SUBB A, #02H				;Subtraindo (A)-#02h -> para mover o cursor a direita
+0707    5002           173     		JNC BR_1					;Caso (A) >= 02 -> o cursor está na borda direita [retorna]
+0709    0550           174     		INC 50H						;Incremeta o conteúdo de (50h)
+070B    22             175     BR_1: 	RET
+                       176     
+------                 177     CODE
+                       178     
+                       179     ;----------------BUTTOM_SAVE--------------------
+                       180     CODE AT 0800H
+                       181     
+0800    A861           182     BS: 		MOV R0,61H					;Carregando o (R0) com o conteudo de 80h [Auxiliar para Salvar]
+0802    A650           183     		MOV @R0,50H					;Salvando a posição do cursor
+0804    0561           184     		INC 61H						;Atualizando buffer de salvar
+0806    22             185     		RET
+MACRO ASSEMBLER PROJECT_ALPHA                    05/13/19  21:49:41 PAGE     3
+                     
+                       186     
+------                 187     CODE
+                       188     
+                       189     ;----------------BUTTOM_FIRE--------------------
+                       190     CODE AT 0900H
+                       191     
+0900    75D000         192     BF: 		MOV PSW, #00H					;Inicializando PSW -> Banco:0
+0903    E550           193     		MOV A,50H                       ;Armazenando o end 50h [cursor] em (A)
+0905    7840           194     		MOV R0,#40H                     ;Armazenando o end 40h [primeiro navio] em (R0)
+0907    7905           195     		MOV R1,#05H                     ;Armazenando a quantidade de navios em (R1)
+                       196     		
+0909    C3             197     BF_1: 	CLR C                           ;Limpa Carry
+090A    96             198     		SUBB A,@R0                      ;(A) - (R0)
+090B    7006           199     		JNZ BF_2                        ;Caso (Z) = 0 [errou o navio], pula para a sub-rotina BF_2
+090D    0560           200     		INC 60H                         ;Incrementa a pontuação
+090F    E6             201     		MOV A,@R0                       ;Pega o endereço no navio
+0910    D2E7           202     		SETB ACC.7                      ;Set '1' [flag] no bit mais significativo no end do navio
+0912    F6             203             MOV @R0,A                       ;Retorna o valor para o end do navio 
+                       204             ;LCALL OLED                     ;Chama a sub-rotina para manter aceso o Led do navio
+                       205     
+0913    08             206     BF_2:    INC R0                          ;Incrementa o buffer do (R0) para checar outros navios
+0914    D9F3           207             DJNZ R1, BF_1                   ;Decrementa (R1) e verifica se checou a quantidade de navios
+0916    1567           208             DEC 67H                         ;Decrementa (70h) [numero de tentativas]
+0918    22             209             RET                             
+                       210             
+------                 211     CODE
+                       212     
+                       213     ;----------------XY_P--------------------
+                       214     CODE AT 0A00H
+                       215         
+0A00    E562           216     XYP:     MOV A,62H                       ;Armazena end (90h) [buffer conversão] em (A)
+0A02    5403           217             ANL A,#03H                      ;Aplica máscara em (A) [0000 0111]
+0A04    2463           218             ADD A,#63H                      ;(A) + (95h) [end de mem inicial das portas]
+0A06    F8             219             MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
+                       220             
+0A07    E562           221             MOV A,62H                       ;Armazena end (90h) [buffer conversão] em (A)
+0A09    5470           222             ANL A,#70H                      ;Aplica máscara em (A) [0111 0000]
+0A0B    C4             223             SWAP A                          ;Troca o MSB com LSB de (A)
+0A0C    F9             224             MOV R1,A                        ;Armazena (A) em (R1)
+0A0D    7A01           225             MOV R2,#01H                     ;Armazena #01h em (R2)
+                       226             
+0A0F    6005           227             JZ, XYP_2                       ;Caso (Z)=0 de (A) pula para XYP_2
+                       228             
+0A11    EA             229     XYP_1:   MOV A,R2                        ;Armazena (R2) em (A)
+0A12    23             230             RL A                            ;Rotaciona a esquerda (A)
+0A13    FA             231             MOV R2,A                        ;Armazena (A) em (R2)
+0A14    D9FB           232             DJNZ R1,XYP_1                   ;Decrementa (R1) e caso (Z)!=0 pula para XYP_1
+                       233             
+0A16    EA             234     XYP_2:   MOV A,R2                        ;Armazena (R2) em (A)
+0A17    46             235             ORL A,@R0                       ;Realiza "OR" entre((R0)) e (A)
+0A18    F6             236             MOV @R0,A                       ;Armazena (A) em ((R0))
+0A19    22             237             RET
+                       238             
+------                 239     CODE
+                       240     
+                       241     ;------------------CURSOR---------------------
+                       242     CODE AT 0B00H
+MACRO ASSEMBLER PROJECT_ALPHA                    05/13/19  21:49:41 PAGE     4
+                     
+                       243     
+0B00    E550           244     CURSOR:  MOV A,50H                       ;Armazena end (50h) [buffer cursor XY] em (A)
+0B02    5403           245             ANL A,#03H                      ;Aplica máscara em (A) [0000 0111]
+0B04    2463           246             ADD A,#63H                      ;(A) + (63h) [end inicial das portas]
+0B06    F8             247             MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
+                       248             
+0B07    E550           249             MOV A,50H                       ;Armazena end (50h) [buffer cursor XY] em (A)
+0B09    5470           250             ANL A,#70H                      ;Aplica máscara em (A) [0111 0000]
+0B0B    C4             251             SWAP A                          ;Troca o MSB com LSB de (A)
+0B0C    F9             252             MOV R1,A                        ;Armazena (A) em (R1)
+0B0D    7A01           253             MOV R2,#01H                     ;Armazena #01h em (R2)
+                       254             
+0B0F    6005           255             JZ, CURSOR_2                    ;Caso (Z)=0 de (A) pula para CURSOR_2
+                       256             
+                       257     CURSOR_1: 
+0B11    EA             258             MOV A,R2                        ;Armazena (R2) em (A)
+0B12    23             259             RL A                            ;Rotaciona a esquerda (A)
+0B13    FA             260             MOV R2,A                        ;Armazena (A) em (R2)
+0B14    D9FB           261             DJNZ R1,CURSOR_1                ;Decrementa (R1) e caso (Z)!=0 pula para CURSOR_1
+                       262             
+                       263     CURSOR_2: 
+0B16    8A51           264             MOV 51H,R2                      ;Armazena (R2) em (51h) [end de leds (modo->P)]
+0B18    8852           265             MOV 52H,R0                      ;Armazena (R2) em (52h) [end de porta (modo->P)] 
+0B1A    22             266             RET
+------                 267     CODE
+                       268     
+                       269     ;-------------------BLINK---------------------
+                       270     CODE AT 0C00H
+                       271     
+                       272     BLINK:  
+                       273     
+------                 274     CODE
+                       275     
+                       276     ;----------------WAIT [0,5s]------------------
+                       277     CODE AT 0D00H
+                       278     
+                       279     ;DEFINIR OS VALORES DAS CONSTANTES DE R0 E R1 PARA DAR 0,5s
+                       280     
+0D00    78FF           281     WAIT:    MOV R0,#0FFH                    ;Define constante para (R0)
+                       282     
+0D02    79FF           283     WAIT_1:  MOV R1,#0FFH                    ;Define constante para (R1)
+0D04    D9FE           284             DJNZ R1,$                       ;Decrementa (R1). Caso (Z)!=0 pula para a própria linha
+0D06    D8FA           285             DJNZ R0,WAIT_1                  ;Decrementa (R0). Caso (Z)!=0 pula para WAIT_1
+0D08    22             286             RET
+                       287     
+------                 288     CODE
+                       289     
+                       290     ;----------------ATT LED's------------------
+                       291     CODE AT 0E00H
+0E00    856380         292     ATTLED:  MOV P0,63H                      ;Atualiza Porta 0
+0E03    856490         293             MOV P1,64H                      ;Atualiza Porta 1
+0E06    8565A0         294             MOV P2,65H                      ;Atualiza Porta 2
+0E09    22             295             RET
+------                 296     CODE
+                       297     
+                       298     ;----------------SHIPS_ON------------------
+                       299     CODE AT 0F00H
+MACRO ASSEMBLER PROJECT_ALPHA                    05/13/19  21:49:41 PAGE     5
+                     
+                       300     SHIPS_ON:  
+0F00    7840           301             MOV R0, #40H    ; R0 armazena o inicio do buffer dos navios
+0F02    E561           302             MOV A, 61H
+0F04    C3             303             CLR C
+0F05    9440           304             SUBB A, #40H
+0F07    FF             305             MOV R7, A       ; R1 armazena a quantidade de navios salvos
+                       306             
+                       307             ; >>> VERIFICAR SE TEM PELOMENOS 1 NO BUFFER <<<<
+0F08    6008           308             JZ SHIPS_ON_2
+                       309             
+                       310             ; >>> TEM PELOMENOS 1! ENTÃO LE O BUFFER <<<
+                       311     SHIPS_ON_1: 
+0F0A    8662           312             MOV 62H, @R0    ; PREPARA PARA CONVERTER O VALOR DO BUFFER E ACENDER O LED
+0F0C    120A00         313             LCALL XYP
+0F0F    08             314             INC R0
+                       315             
+                       316             ; >>> CONFERE SE AINDA TEM NAVIOS NO BUFFER
+0F10    DFF8           317             DJNZ R7, SHIPS_ON_1
+                       318             
+                       319     SHIPS_ON_2: 
+0F12    22             320             RET
+------                 321     CODE
+                       322     
+                       323     ;-------------------MAIN----------------------
+                       324     CODE AT 0200H
+                       325     
+                       326     MAIN: 		
+0200    120100         327     		LCALL HARD_INIT		;Call to initialize the ports
+                       328     ; =============================================================
+                       329     ; SOFTWARE INIT
+0203    75D000         330             MOV PSW, #00H
+0206    754000         331             MOV 40H, #00H
+0209    754100         332             MOV 41H, #00H
+020C    754200         333             MOV 42H, #00H
+020F    754300         334             MOV 43H, #00H
+0212    755000         335             MOV 50H, #00H
+0215    755101         336             MOV 51H, #01H
+0218    755263         337             MOV 52H, #63H
+021B    756000         338             MOV 60H, #00H
+021E    756714         339             MOV 67H, #14H
+0221    756140         340             MOV 61H, #40H
+0224    756200         341             MOV 62H, #00H
+0227    756300         342             MOV 63H, #00H
+022A    756400         343             MOV 64H, #00H
+022D    756500         344             MOV 65H, #00H
+0230    756600         345             MOV 66H, #00H
+                       346     
+                       347     ; =============================================================
+                       348     ; Player 1 (Posicionando navios)
+                       349             
+                       350     PLAYER1_START: 
+0233    120E00         351             LCALL ATTLED
+0236    E5B0           352             MOV A, P3
+0238    C3             353             CLR C
+0239    94FF           354             SUBB A, #0FFH
+023B    60F6           355             JZ PLAYER1_START
+023D    E5B0           356             MOV A, P3
+MACRO ASSEMBLER PROJECT_ALPHA                    05/13/19  21:49:41 PAGE     6
+                     
+                       357             
+023F    120B00         358             LCALL CURSOR                    ;Salvou posição do cursor no end's [51h e 52h - modo -> P]
+                       359             
+0242    E5B0           360             MOV A, P3
+0244    20E703         361             JB ACC.7, JUMPBU
+0247    120400         362             LCALL BU
+                       363     JUMPBU: 
+024A    E5B0           364             MOV A, P3
+024C    20E603         365             JB ACC.6, JUMPBD
+024F    120500         366             LCALL BD
+                       367     JUMPBD: 
+0252    E5B0           368             MOV A, P3 
+0254    20E403         369             JB ACC.4, JUMPBL
+0257    120600         370             LCALL BL
+                       371     JUMPBL: 
+025A    E5B0           372             MOV A, P3 
+025C    20E303         373             JB ACC.3, JUMPBR
+025F    120700         374             LCALL BR
+                       375     JUMPBR: 
+0262    E5B0           376             MOV A, P3
+0264    20E103         377             JB ACC.1, JUMPBS
+0267    120800         378             LCALL BS
+                       379     JUMPBS: 
+026A    E5B0           380             MOV A, P3
+026C    C3             381             CLR C
+026D    94FF           382             SUBB A, #0FFH
+026F    70F9           383             JNZ JUMPBS                      ;Esperando soltar botão
+                       384             
+0271    756300         385             MOV 63H, #00H                   ;Limpando mapa
+0274    756400         386             MOV 64H, #00H
+0277    756500         387             MOV 65H, #00H
+                       388             
+027A    855062         389             MOV 62H, 50H                    ;Armazena a posição do cursor no buffer para conversão [XY -> P]
+027D    120A00         390             LCALL XYP                       ;Convertendo a nova posição do cursor
+                       391             
+0280    120F00         392             LCALL SHIPS_ON
+                       393             
+0283    E561           394             MOV A, 61H                      ;Verificando o auxiliar salvamento
+0285    C3             395             CLR C
+0286    9444           396             SUBB A, #44H                    ;Verificando se salvou 4 navios
+0288    40A9           397             JC PLAYER1_START
+                       398             
+                       399             
+                       400     ; COMEÇA PLAYER 2
+                       401     
+------                 402     CODE
+                       403     END
+MACRO ASSEMBLER PROJECT_ALPHA                              05/13/19 21:49:41 PAGE     0
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+DPL. . . . . . . .  D ADDR   0082H   A                          28# 
+P0 . . . . . . . .  D ADDR   0080H   A                          20# 106 292 
+XYP. . . . . . . .  C ADDR   0A00H   A                          216# 313 390 
+P1 . . . . . . . .  D ADDR   0090H   A                          21# 107 293 
+JUMPBD . . . . . .  C ADDR   0252H   A                          365 367# 
+B. . . . . . . . .  D ADDR   00F0H   A                          26# 
+P2 . . . . . . . .  D ADDR   00A0H   A                          22# 108 294 
+SHIPS_ON . . . . .  C ADDR   0F00H   A                          300# 392 
+PS . . . . . . . .  B ADDR   00B8H.4 A                          69# 
+SP . . . . . . . .  D ADDR   0081H   A                          27# 
+P3 . . . . . . . .  D ADDR   00B0H   A                          23# 109 352 356 360 
+                                                                364 368 372 376 380 
+                                                                
+BR_1 . . . . . . .  C ADDR   070BH   A                          173 175# 
+T0 . . . . . . . .  B ADDR   00B0H.4 A                          78# 
+AC . . . . . . . .  B ADDR   00D0H.6 A                          46# 
+WAIT_1 . . . . . .  C ADDR   0D02H   A                          283# 285 
+MAIN . . . . . . .  C ADDR   0200H   A                          98 326# 
+REN. . . . . . . .  B ADDR   0098H.4 A                          87# 
+T1 . . . . . . . .  B ADDR   00B0H.5 A                          77# 
+OV . . . . . . . .  B ADDR   00D0H.2 A                          50# 
+BD . . . . . . . .  C ADDR   0500H   A                          142# 366 
+EA . . . . . . . .  B ADDR   00A8H.7 A                          62# 
+BU_1 . . . . . . .  C ADDR   040EH   A                          130 135# 
+ACC. . . . . . . .  D ADDR   00E0H   A                          25# 202 361 365 369 
+                                                                373 377 
+BF . . . . . . . .  C ADDR   0900H   A                          192# 
+WR . . . . . . . .  B ADDR   00B0H.6 A                          76# 
+ET0. . . . . . . .  B ADDR   00A8H.1 A                          66# 
+JUMPBL . . . . . .  C ADDR   025AH   A                          369 371# 
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          64# 
+TF0. . . . . . . .  B ADDR   0088H.5 A                          55# 
+PLAYER1_START. . .  C ADDR   0233H   A                          350# 355 397 
+TF1. . . . . . . .  B ADDR   0088H.7 A                          53# 
+RB8. . . . . . . .  B ADDR   0098H.2 A                          89# 
+TH0. . . . . . . .  D ADDR   008CH   A                          35# 
+EX0. . . . . . . .  B ADDR   00A8H.0 A                          67# 
+IT0. . . . . . . .  B ADDR   0088H.0 A                          60# 
+TH1. . . . . . . .  D ADDR   008DH   A                          36# 
+CURSOR_1 . . . . .  C ADDR   0B11H   A                          257# 261 
+BL . . . . . . . .  C ADDR   0600H   A                          156# 370 
+TB8. . . . . . . .  B ADDR   0098H.3 A                          88# 
+RXD. . . . . . . .  B ADDR   00B0H.0 A                          82# 
+EX1. . . . . . . .  B ADDR   00A8H.2 A                          65# 
+IT1. . . . . . . .  B ADDR   0088H.2 A                          58# 
+IE . . . . . . . .  D ADDR   00A8H   A                          37# 
+CURSOR_2 . . . . .  C ADDR   0B16H   A                          255 263# 
+JUMPBR . . . . . .  C ADDR   0262H   A                          373 375# 
+BLINK. . . . . . .  C ADDR   0C00H   A                          272# 
+SM0. . . . . . . .  B ADDR   0098H.7 A                          84# 
+TXD. . . . . . . .  B ADDR   00B0H.1 A                          81# 
+P. . . . . . . . .  B ADDR   00D0H.0 A                          51# 
+SBUF . . . . . . .  D ADDR   0099H   A                          40# 
+TL0. . . . . . . .  D ADDR   008AH   A                          33# 
+PCON . . . . . . .  D ADDR   0087H   A                          30# 
+JUMPBS . . . . . .  C ADDR   026AH   A                          377 379# 383 
+XYP_1. . . . . . .  C ADDR   0A11H   A                          229# 232 
+SM1. . . . . . . .  B ADDR   0098H.6 A                          85# 
+TL1. . . . . . . .  D ADDR   008BH   A                          34# 
+XYP_2. . . . . . .  C ADDR   0A16H   A                          227 234# 
+HARD_INIT. . . . .  C ADDR   0100H   A                          105# 327 
+SM2. . . . . . . .  B ADDR   0098H.5 A                          86# 
+MACRO ASSEMBLER PROJECT_ALPHA                              05/13/19 21:49:41 PAGE     1
+
+
+DOS MACRO ASSEMBLER MA51 V06.18.15.328
+OBJECT MODULE PLACED IN C:\ALUNOS\NADA AQUI\PROJECT_ALPHA.OBJ
+ASSEMBLER INVOKED BY: QUIET GENERATEDEPFILE EP SYNTAX(ASM51) PR XR PL(60) PW(80) DB OJ(C:\ALUNOS\NADA AQUI\PROJECT_ALPHA.OBJ) PIN(C:\RAISONANCE\RIDE\INC;C:\RAISONANCE\RIDE\INC\51) 
+
+LOC     OBJ           LINE    SOURCE
+JUMPBU . . . . . .  C ADDR   024AH   A                          361 363# 
+SHIPS_ON_1 . . . .  C ADDR   0F0AH   A                          311# 317 
+SCON . . . . . . .  D ADDR   0098H   A                          39# 
+SHIPS_ON_2 . . . .  C ADDR   0F12H   A                          308 319# 
+BR . . . . . . . .  C ADDR   0700H   A                          169# 374 
+PT0. . . . . . . .  B ADDR   00B8H.1 A                          72# 
+TMOD . . . . . . .  D ADDR   0089H   A                          32# 
+TCON . . . . . . .  D ADDR   0088H   A                          31# 
+WAIT . . . . . . .  C ADDR   0D00H   A                          281# 
+BS . . . . . . . .  C ADDR   0800H   A                          182# 378 
+PT1. . . . . . . .  B ADDR   00B8H.3 A                          70# 
+RS0. . . . . . . .  B ADDR   00D0H.3 A                          49# 
+BD_1 . . . . . . .  C ADDR   050DH   A                          145 149# 
+RD . . . . . . . .  B ADDR   00B0H.7 A                          75# 
+TR0. . . . . . . .  B ADDR   0088H.4 A                          56# 
+RS1. . . . . . . .  B ADDR   00D0H.4 A                          48# 
+F0 . . . . . . . .  B ADDR   00D0H.5 A                          47# 
+BU . . . . . . . .  C ADDR   0400H   A                          127# 362 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          54# 
+BF_1 . . . . . . .  C ADDR   0909H   A                          197# 207 
+PX0. . . . . . . .  B ADDR   00B8H.0 A                          73# 
+ES . . . . . . . .  B ADDR   00A8H.4 A                          63# 
+BF_2 . . . . . . .  C ADDR   0913H   A                          199 206# 
+PX1. . . . . . . .  B ADDR   00B8H.2 A                          71# 
+IP . . . . . . . .  D ADDR   00B8H   A                          38# 
+PSW. . . . . . . .  D ADDR   00D0H   A                          24# 192 330 
+RI . . . . . . . .  B ADDR   0098H.0 A                          91# 
+INT0 . . . . . . .  B ADDR   00B0H.2 A                          80# 
+?PR?PROJECT_ALPHA.  C SEG    0000H      REL=UNIT                100# 111 118 137 
+                                                                151 164 177 187 211 
+                                                                239 267 274 288 296 
+                                                                321 402 
+INT1 . . . . . . .  B ADDR   00B0H.3 A                          79# 
+CY . . . . . . . .  B ADDR   00D0H.7 A                          45# 
+DPH. . . . . . . .  D ADDR   0083H   A                          29# 
+TI . . . . . . . .  B ADDR   0098H.1 A                          90# 
+ATTLED . . . . . .  C ADDR   0E00H   A                          292# 351 
+CURSOR . . . . . .  C ADDR   0B00H   A                          244# 358 
+BL_1 . . . . . . .  C ADDR   060BH   A                          160 162# 
+IE0. . . . . . . .  B ADDR   0088H.1 A                          59# 
+IE1. . . . . . . .  B ADDR   0088H.3 A                          57# 
+PROJECT_ALPHA. . .  N NUMB   -----
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    330    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)
