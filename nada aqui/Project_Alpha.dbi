@@ -31,3 +31,7 @@ FreqXTal=12.000
 Expressions=
 NbExpr=0
 State=0
+[AT89S8253\UART 0]
+AsciiHex0=0
+SpyTrm0=1
+SpyRec0=0

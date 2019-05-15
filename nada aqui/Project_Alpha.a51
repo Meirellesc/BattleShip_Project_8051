@@ -47,7 +47,7 @@ code
 code at 0400h
 
 BU:		
-        MOV PSW,00h
+        MOV PSW,#00h
         MOV A,50h					;Armazenando a posição em (A)
 		CLR C						;Limpando o Carry
 		SUBB A, #10h				;Subtraindo (A)-#10h -> para subir o cursor
@@ -63,7 +63,7 @@ code
 ;----------------BUTTOM_DOWN--------------------
 code at 0500h
 
-BD:		MOV PSW,00h
+BD:		MOV PSW,#00h
         MOV A,50h					;Armazenando a posição em (A)
 		CLR C						;Limpando o Carry
 		SUBB A, #70h				;Subtraindo (A)-#70h -> para descer o cursor
@@ -78,7 +78,7 @@ code
 ;----------------BUTTOM_LEFT--------------------
 code at 0600h
 
-BL:		MOV PSW,00h
+BL:		MOV PSW,#00h
         MOV A,50h					;Armazenando a posição em (A)
 		ANL A,#03h					;(A) AND #03h -> Máscara
 		CLR C						;Limpando o Carry
@@ -92,7 +92,7 @@ code
 ;----------------BUTTOM_RIGHT--------------------
 code at 0700h
 
-BR:		MOV PSW,00h
+BR:		MOV PSW,#00h
         MOV A,50h					;Armazenando a posição em (A)
 		ANL A,#03h					;(A) AND #03h -> Máscara
 		CLR C						;Limpando o Carry
@@ -106,7 +106,7 @@ code
 ;----------------BUTTOM_SAVE--------------------
 code at 0800h
 
-BS:		MOV PSW,00h
+BS:		MOV PSW,#00h
         MOV R0,61h					;Carregando o (R0) com o conteudo de 61h [Auxiliar para Salvar]
 		MOV @R0,50h					;Salvando a posição do cursor
 		INC 61h						;Atualizando buffer de salvar
@@ -117,11 +117,10 @@ code
 ;----------------BUTTOM_FIRE--------------------
 code at 0900h
 
-BF:		MOV PSW,00h
-        MOV PSW, #00h					;Inicializando PSW -> Banco:0
+BF:		MOV PSW, #00h					;Inicializando PSW -> Banco:0
 		MOV A,50h                       ;Armazenando o end 50h [cursor] em (A)
 		MOV R0,#40h                     ;Armazenando o end 40h [primeiro navio] em (R0)
-		MOV R1,#05h                     ;Armazenando a quantidade de navios em (R1)
+		MOV R1,#04h                     ;Armazenando a quantidade de navios em (R1)
 		
 BF_1:	CLR C                           ;Limpa Carry
 		SUBB A,@R0                      ;(A) - (R0)
@@ -130,7 +129,6 @@ BF_1:	CLR C                           ;Limpa Carry
 		MOV A,@R0                       ;Pega o endereço no navio
 		SETB ACC.7                      ;Set '1' [flag] no bit mais significativo no end do navio
         MOV @R0,A                       ;Retorna o valor para o end do navio 
-        ;LCALL OLED                     ;Chama a sub-rotina para manter aceso o Led do navio
 
 BF_2:   INC R0                          ;Incrementa o buffer do (R0) para checar outros navios
         DJNZ R1, BF_1                   ;Decrementa (R1) e verifica se checou a quantidade de navios
@@ -142,13 +140,13 @@ code
 ;----------------XY_P--------------------
 code at 0A00h
     
-XYP:    MOV PSW,00h
-        MOV A,62h                       ;Armazena end (90h) [buffer conversão] em (A)
+XYP:    MOV PSW,#00h
+        MOV A,62h                       ;Armazena end (62h) [buffer conversão] em (A)
         ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
-        ADD A,#63h                      ;(A) + (95h) [end de mem inicial das portas]
+        ADD A,#63h                      ;(A) + (63h) [end de mem inicial das portas]
         MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
         
-        MOV A,62h                       ;Armazena end (90h) [buffer conversão] em (A)
+        MOV A,62h                       ;Armazena end (62h) [buffer conversão] em (A)
         ANL A,#70h                      ;Aplica máscara em (A) [0111 0000]
         SWAP A                          ;Troca o MSB com LSB de (A)
         MOV R1,A                        ;Armazena (A) em (R1)
@@ -171,7 +169,7 @@ code
 ;------------------CURSOR---------------------
 code at 0B00h
         
-CURSOR: MOV PSW,00h
+CURSOR: MOV PSW,#00h
         MOV A,50h                       ;Armazena end (50h) [buffer cursor XY] em (A)
         ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
         ADD A,#63h                      ;(A) + (63h) [end inicial das portas]
@@ -209,10 +207,15 @@ code at 0D00h
 
 ;DEFINIR OS VALORES DAS CONSTANTES DE R0 E R1 PARA DAR 0,5s
 
-WAIT:   MOV R0,#0FFh                    ;Define constante para (R0)
+WAIT:   MOV PSW, #00h
+        MOV R0,#04h                    ;Define constante para (R0)
 
-WAIT_1: MOV R1,#0FFh                    ;Define constante para (R1)
-        DJNZ R1,$                       ;Decrementa (R1). Caso (Z)!=0 pula para a própria linha
+WAIT_1: MOV R1,#00h                    ;Define constante para (R1)
+
+WAIT_2: MOV R2, #00h
+
+        DJNZ R2, $
+        DJNZ R1,WAIT_2                  ;Decrementa (R1). Caso (Z)!=0 pula para a própria linha
         DJNZ R0,WAIT_1                  ;Decrementa (R0). Caso (Z)!=0 pula para WAIT_1
         RET
 
@@ -229,12 +232,12 @@ code
 ;----------------SHIPS_ON------------------
 code at 0F00h
 SHIPS_ON: 
-        MOV PSW, 18h    ; BANCO 4 
+        MOV PSW, #18h    ; BANCO 4 
         MOV R0, #40h    ; R0 armazena o inicio do buffer dos navios
         MOV A, 61h
         CLR C
         SUBB A, #40h
-        MOV R7, A       ; R1 armazena a quantidade de navios salvos
+        MOV R7, A       ; R7 armazena a quantidade de navios salvos
         
         ; >>> VERIFICAR SE TEM PELOMENOS 1 NO BUFFER <<<<
         JZ SHIPS_ON_2
@@ -243,13 +246,35 @@ SHIPS_ON:
 SHIPS_ON_1:
         MOV 62h, @R0    ; PREPARA PARA CONVERTER O VALOR DO BUFFER E ACENDER O LED
         LCALL XYP
-        MOV PSW,18h
+        MOV PSW,#18h
         INC R0
         
         ; >>> CONFERE SE AINDA TEM NAVIOS NO BUFFER
         DJNZ R7, SHIPS_ON_1
         
 SHIPS_ON_2:
+        RET
+code
+
+;----------------SHIPS_ON_FIRE------------------
+code at 1000h
+
+SHIPS_ON_FIRE:                      ;ACENDE NAVIOS QUE FORAM ATINGIDOS
+
+        MOV PSW, #18h    ; BANCO 4 
+        MOV R0, #40h     ; R0 armazena o inicio do buffer dos navios
+        MOV R7, #04h     ; R7 armazena a quantidade de navios salvos
+        
+SHIPS_ON_FIRE1:
+        MOV A, @R0
+        JNB ACC.7,SHIPS_ON_FIRE2    ;VERIFICA SE O NAVIO FOI ATINGIDO (ACC.7 == 1)
+        MOV 62h, @R0                ;PREPARA PARA CONVERTER O VALOR DO BUFFER E ACENDER O LED
+        LCALL XYP
+        
+        MOV PSW,#18h
+SHIPS_ON_FIRE2:
+        INC R0
+        DJNZ R7, SHIPS_ON_FIRE1
         RET
 code
 
@@ -281,7 +306,7 @@ MAIN:
 ; Player 1 (Posicionando navios)
         
 PLAYER1_START:
-        MOV PSW, 00h
+        MOV PSW, #00h
         LCALL ATTLED
         MOV A, P3
         CLR C
@@ -314,6 +339,7 @@ JUMPBS:
         MOV A, P3
         CLR C
         SUBB A, #0FFh
+        ;LCALL WAIT
         JNZ JUMPBS                      ;Esperando soltar botão
         
         MOV 63h, #00h                   ;Limpando mapa
@@ -331,7 +357,86 @@ JUMPBS:
         JC PLAYER1_START
         
         
-; COMEÇA PLAYER 2
+; =============================================================
+; Player 2 (Game)
 
+PLAYER2_START:
+        ; SOFTWARE INIT
+        MOV 50h, #00h
+        MOV 51h, #01h
+        MOV 52h, #63h
+        MOV 60h, #00h
+        MOV 67h, #14h
+        MOV 62h, #00h
+        MOV 63h, #01h
+        MOV 64h, #00h
+        MOV 65h, #00h
+        MOV 66h, #00h
+        
+; GAME
+GAME_LOOP:
+        MOV PSW, #00h
+        LCALL ATTLED
+        MOV A, P3
+        CLR C
+        SUBB A, #0FFh
+        JZ GAME_LOOP
+        MOV A, P3
+        
+        LCALL CURSOR                    ;Salvou posição do cursor no end's [51h e 52h - modo -> P]
+        
+        MOV A, P3
+        JB ACC.7, JUMPBU_GAME
+        LCALL BU
+JUMPBU_GAME:
+        MOV A, P3
+        JB ACC.6, JUMPBD_GAME
+        LCALL BD
+JUMPBD_GAME:
+        MOV A, P3 
+        JB ACC.4, JUMPBL_GAME
+        LCALL BL
+JUMPBL_GAME:
+        MOV A, P3 
+        JB ACC.3, JUMPBR_GAME
+        LCALL BR
+JUMPBR_GAME:
+        MOV A, P3
+        JB ACC.0, JUMPBF_GAME
+        LCALL BF
+JUMPBF_GAME:
+        MOV A, P3
+        CLR C
+        SUBB A, #0FFh
+        ;LCALL WAIT
+        JNZ JUMPBF_GAME                 ;Esperando soltar botão
+       
+        
+        MOV 63h, #00h                   ;Limpando mapa
+        MOV 64h, #00h
+        MOV 65h, #00h
+        
+        MOV 62h, 50h                    ;Armazena a posição do cursor no buffer para conversão [XY -> P]
+        LCALL XYP                       ;Convertendo a nova posição do cursor
+        
+        LCALL SHIPS_ON_FIRE
+        
+        ;VERIFICAR VITORIA
+        MOV A,60h                       ;Copia a pontuação do jogador em A
+        CLR C
+        SUBB A,#04h                     ;Verifica se tem 4 pontos
+        JZ END_GAME
+     
+        ;VERIFICAR NUMERO DE TENTATIVAS 
+        MOV A,67h                       ;Copia as tentivas restantes do jogador em A
+        JZ END_GAME    
+        LJMP GAME_LOOP
+        
+END_GAME:
+        MOV 63h,#0FFh
+        MOV 64h, #0FFh
+        MOV 65h, #0FFh
+        LCALL ATTLED
+        SJMP $
 code
 END
