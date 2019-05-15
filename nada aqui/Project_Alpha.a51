@@ -118,11 +118,11 @@ code
 code at 0900h
 
 BF:		MOV PSW, #00h					;Inicializando PSW -> Banco:0
-		MOV A,50h                       ;Armazenando o end 50h [cursor] em (A)
 		MOV R0,#40h                     ;Armazenando o end 40h [primeiro navio] em (R0)
 		MOV R1,#04h                     ;Armazenando a quantidade de navios em (R1)
 		
-BF_1:	CLR C                           ;Limpa Carry
+BF_1:	MOV A,50h                       ;Armazenando o end 50h [cursor] em (A)
+        CLR C                           ;Limpa Carry
 		SUBB A,@R0                      ;(A) - (R0)
 		JNZ BF_2                        ;Caso (Z) = 0 [errou o navio], pula para a sub-rotina BF_2
 		INC 60h                         ;Incrementa a pontuação
@@ -132,7 +132,29 @@ BF_1:	CLR C                           ;Limpa Carry
 
 BF_2:   INC R0                          ;Incrementa o buffer do (R0) para checar outros navios
         DJNZ R1, BF_1                   ;Decrementa (R1) e verifica se checou a quantidade de navios
-        DEC 67h                         ;Decrementa (70h) [numero de tentativas]
+        DEC 67h                         ;Decrementa (67h) [numero de tentativas]
+        
+        MOV R0,63h
+        MOV R1,64h
+        MOV R2,65h
+        MOV 63h,#00h
+        MOV 64h,#00h
+        MOV 65h,#00h
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,#0FFh
+        MOV 64h,#0FFh
+        MOV 65h,#0FFh
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,R0
+        MOV 64h,R1
+        MOV 65h,R2
+        LCALL ATTLED
         RET                             
         
 code
@@ -208,7 +230,7 @@ code at 0D00h
 ;DEFINIR OS VALORES DAS CONSTANTES DE R0 E R1 PARA DAR 0,5s
 
 WAIT:   MOV PSW, #00h
-        MOV R0,#04h                    ;Define constante para (R0)
+        MOV R0,#01h                    ;Define constante para (R0)
 
 WAIT_1: MOV R1,#00h                    ;Define constante para (R1)
 
@@ -294,7 +316,7 @@ MAIN:
         MOV 51h, #01h
         MOV 52h, #63h
         MOV 60h, #00h
-        MOV 67h, #14h
+        MOV 67h, #07h
         MOV 61h, #40h
         MOV 62h, #00h
         MOV 63h, #01h
@@ -306,8 +328,13 @@ MAIN:
 ; Player 1 (Posicionando navios)
         
 PLAYER1_START:
-        MOV PSW, #00h
+        MOV PSW, #00h                   ;Debouncing
         LCALL ATTLED
+        MOV A, P3
+        CLR C
+        SUBB A, #0FFh
+        JZ PLAYER1_START
+        LCALL WAIT
         MOV A, P3
         CLR C
         SUBB A, #0FFh
@@ -336,10 +363,14 @@ JUMPBR:
         JB ACC.1, JUMPBS
         LCALL BS
 JUMPBS:
+        MOV A, P3                       ;Debouncing
+        CLR C
+        SUBB A, #0FFh
+        JNZ JUMPBS                      ;Esperando soltar botão
+        LCALL WAIT
         MOV A, P3
         CLR C
         SUBB A, #0FFh
-        ;LCALL WAIT
         JNZ JUMPBS                      ;Esperando soltar botão
         
         MOV 63h, #00h                   ;Limpando mapa
@@ -366,7 +397,7 @@ PLAYER2_START:
         MOV 51h, #01h
         MOV 52h, #63h
         MOV 60h, #00h
-        MOV 67h, #14h
+        MOV 67h, #07h
         MOV 62h, #00h
         MOV 63h, #01h
         MOV 64h, #00h
@@ -375,9 +406,14 @@ PLAYER2_START:
         
 ; GAME
 GAME_LOOP:
-        MOV PSW, #00h
-        LCALL ATTLED
-        MOV A, P3
+        MOV PSW, #00h                   ;BANCO 0
+        LCALL ATTLED                    ;Atualiza as portas
+        MOV A, P3                       ;Lê a porta P3
+        CLR C
+        SUBB A, #0FFh                   ;Verifica se foi pressionado botão
+        JZ GAME_LOOP                    ;Caso (Z)=0, não foi pressionado
+        LCALL WAIT                      ;ESPERA 0,5s
+        MOV A, P3                       ;DEBOUNCING
         CLR C
         SUBB A, #0FFh
         JZ GAME_LOOP
@@ -405,10 +441,14 @@ JUMPBR_GAME:
         JB ACC.0, JUMPBF_GAME
         LCALL BF
 JUMPBF_GAME:
+        MOV A, P3                       ;Debouncing
+        CLR C
+        SUBB A, #0FFh
+        JNZ JUMPBF_GAME                 ;Esperando soltar botão
+        LCALL WAIT
         MOV A, P3
         CLR C
         SUBB A, #0FFh
-        ;LCALL WAIT
         JNZ JUMPBF_GAME                 ;Esperando soltar botão
        
         
@@ -425,18 +465,53 @@ JUMPBF_GAME:
         MOV A,60h                       ;Copia a pontuação do jogador em A
         CLR C
         SUBB A,#04h                     ;Verifica se tem 4 pontos
-        JZ END_GAME
+        JZ END_GAME_VICTORY
      
         ;VERIFICAR NUMERO DE TENTATIVAS 
         MOV A,67h                       ;Copia as tentivas restantes do jogador em A
-        JZ END_GAME    
+        JZ END_GAME_LOOSE    
         LJMP GAME_LOOP
         
-END_GAME:
+END_GAME_VICTORY:
         MOV 63h,#0FFh
-        MOV 64h, #0FFh
+        MOV 64h, #70h
+        MOV 65h, #0FFh
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,#00h
+        MOV 64h, #00h
+        MOV 65h, #00h
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,#0FFh
+        MOV 64h, #70h
         MOV 65h, #0FFh
         LCALL ATTLED
         SJMP $
+        
+END_GAME_LOOSE:
+        MOV 63h,#0FFh
+        MOV 64h, #80h
+        MOV 65h, #80h
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,#00h
+        MOV 64h, #00h
+        MOV 65h, #00h
+        LCALL ATTLED
+        LCALL WAIT
+        LCALL WAIT
+        LCALL WAIT
+        MOV 63h,#0FFh
+        MOV 64h, #80h
+        MOV 65h, #80h
+        LCALL ATTLED
+        SJMP $        
 code
 END
