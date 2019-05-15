@@ -46,7 +46,9 @@ code
 ;----------------BUTTOM_UP--------------------
 code at 0400h
 
-BU:		MOV A,50h					;Armazenando a posição em (A)
+BU:		
+        MOV PSW,00h
+        MOV A,50h					;Armazenando a posição em (A)
 		CLR C						;Limpando o Carry
 		SUBB A, #10h				;Subtraindo (A)-#10h -> para subir o cursor
 		JC BU_1						;Caso (A) < 10 -> o cursor está na borda superior [retorna]
@@ -61,7 +63,8 @@ code
 ;----------------BUTTOM_DOWN--------------------
 code at 0500h
 
-BD:		MOV A,50h					;Armazenando a posição em (A)
+BD:		MOV PSW,00h
+        MOV A,50h					;Armazenando a posição em (A)
 		CLR C						;Limpando o Carry
 		SUBB A, #70h				;Subtraindo (A)-#70h -> para descer o cursor
 		JNC BD_1					;Caso (A) >= 70 -> o cursor está na borda inferior [retorna]
@@ -75,7 +78,8 @@ code
 ;----------------BUTTOM_LEFT--------------------
 code at 0600h
 
-BL:		MOV A,50h					;Armazenando a posição em (A)
+BL:		MOV PSW,00h
+        MOV A,50h					;Armazenando a posição em (A)
 		ANL A,#03h					;(A) AND #03h -> Máscara
 		CLR C						;Limpando o Carry
 		SUBB A, #01h				;Subtraindo (A)-#01h -> para mover o cursor a esquerda
@@ -88,7 +92,8 @@ code
 ;----------------BUTTOM_RIGHT--------------------
 code at 0700h
 
-BR:		MOV A,50h					;Armazenando a posição em (A)
+BR:		MOV PSW,00h
+        MOV A,50h					;Armazenando a posição em (A)
 		ANL A,#03h					;(A) AND #03h -> Máscara
 		CLR C						;Limpando o Carry
 		SUBB A, #02h				;Subtraindo (A)-#02h -> para mover o cursor a direita
@@ -101,7 +106,8 @@ code
 ;----------------BUTTOM_SAVE--------------------
 code at 0800h
 
-BS:		MOV R0,61h					;Carregando o (R0) com o conteudo de 80h [Auxiliar para Salvar]
+BS:		MOV PSW,00h
+        MOV R0,61h					;Carregando o (R0) com o conteudo de 61h [Auxiliar para Salvar]
 		MOV @R0,50h					;Salvando a posição do cursor
 		INC 61h						;Atualizando buffer de salvar
 		RET
@@ -111,7 +117,8 @@ code
 ;----------------BUTTOM_FIRE--------------------
 code at 0900h
 
-BF:		MOV PSW, #00h					;Inicializando PSW -> Banco:0
+BF:		MOV PSW,00h
+        MOV PSW, #00h					;Inicializando PSW -> Banco:0
 		MOV A,50h                       ;Armazenando o end 50h [cursor] em (A)
 		MOV R0,#40h                     ;Armazenando o end 40h [primeiro navio] em (R0)
 		MOV R1,#05h                     ;Armazenando a quantidade de navios em (R1)
@@ -135,7 +142,8 @@ code
 ;----------------XY_P--------------------
 code at 0A00h
     
-XYP:    MOV A,62h                       ;Armazena end (90h) [buffer conversão] em (A)
+XYP:    MOV PSW,00h
+        MOV A,62h                       ;Armazena end (90h) [buffer conversão] em (A)
         ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
         ADD A,#63h                      ;(A) + (95h) [end de mem inicial das portas]
         MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
@@ -162,8 +170,9 @@ code
 
 ;------------------CURSOR---------------------
 code at 0B00h
-
-CURSOR: MOV A,50h                       ;Armazena end (50h) [buffer cursor XY] em (A)
+        
+CURSOR: MOV PSW,00h
+        MOV A,50h                       ;Armazena end (50h) [buffer cursor XY] em (A)
         ANL A,#03h                      ;Aplica máscara em (A) [0000 0111]
         ADD A,#63h                      ;(A) + (63h) [end inicial das portas]
         MOV R0,A                        ;Armazena (A) em (R0) [selecionou qual das portas]
@@ -220,6 +229,7 @@ code
 ;----------------SHIPS_ON------------------
 code at 0F00h
 SHIPS_ON: 
+        MOV PSW, 18h    ; BANCO 4 
         MOV R0, #40h    ; R0 armazena o inicio do buffer dos navios
         MOV A, 61h
         CLR C
@@ -233,7 +243,8 @@ SHIPS_ON:
 SHIPS_ON_1:
         MOV 62h, @R0    ; PREPARA PARA CONVERTER O VALOR DO BUFFER E ACENDER O LED
         LCALL XYP
-        inc R0
+        MOV PSW,18h
+        INC R0
         
         ; >>> CONFERE SE AINDA TEM NAVIOS NO BUFFER
         DJNZ R7, SHIPS_ON_1
@@ -261,7 +272,7 @@ MAIN:
         MOV 67h, #14h
         MOV 61h, #40h
         MOV 62h, #00h
-        MOV 63h, #00h
+        MOV 63h, #01h
         MOV 64h, #00h
         MOV 65h, #00h
         MOV 66h, #00h
@@ -270,6 +281,7 @@ MAIN:
 ; Player 1 (Posicionando navios)
         
 PLAYER1_START:
+        MOV PSW, 00h
         LCALL ATTLED
         MOV A, P3
         CLR C
