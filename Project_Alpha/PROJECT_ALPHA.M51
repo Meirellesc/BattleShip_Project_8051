@@ -1,25 +1,20 @@
-LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263                                 05/09/19  16:23:02
-MS-DOS LX51 CODE BANKING LINKER/LOCATOR V06.20.17.263,  INVOKED BY:
-C:\Raisonance\Ride\Bin\LX51.EXE C:\Meirelles\FEI\Microprocessador_Microcontrolador\BattleShip_Pro&
-ject\BattleShip_Project\Project_Alpha\Project_Alpha.obj TO(C:\Meirelles\FEI\Microprocessador_Micr&
-ocontrolador\BattleShip_Project\BattleShip_Project\Project_Alpha\Project_Alpha.aof) LIBPATH(C:\Ra&
-isonance\Ride\Lib\51) GENERATEDEPFILE MAP IX RS(256) RSI(128) CSIZE(65536) XSIZE(65536) DEFN(XSTA&
-CKLEN,256) DEFN(TIM1_INIT,E8h) CO(0) DT(0) ID(0) XD(0) BI(0) ABSCODEOFFS(0) XMLM(No,C:\Meirelles\&
-FEI\Microprocessador_Microcontrolador\BattleShip_Project\BattleShip_Project\Project_Alpha\Project&
-_Alpha-modules.Standard.xml) XMLF(No,8000,C:\Meirelles\FEI\Microprocessador_Microcontrolador\Batt&
-leShip_Project\BattleShip_Project\Project_Alpha\Project_Alpha-flash.Standard.xml) 
+LX51 CODE BANKING LINKER/LOCATOR V06.18.15.328                                 05/15/19  20:26:04
+MS-DOS LX51 CODE BANKING LINKER/LOCATOR V06.18.15.328,  INVOKED BY:
+C:\Raisonance\Ride\Bin\LX51.EXE C:\Alunos\Ride7\nada aqui\Project_Alpha.obj TO(C:\Alunos\Ride7\na&
+da aqui\Project_Alpha.aof) LIBPATH(C:\Raisonance\Ride\Lib\51) GENERATEDEPFILE MAP IX RS(256) RSI(&
+128) CSIZE(65536) XSIZE(65536) DEFN(XSTACKLEN,256) DEFN(TIM1_INIT,E8h) CO(0) DT(0) ID(0) XD(0) BI&
+(0) ABSCODEOFFS(0) XMLM(No,C:\Alunos\Ride7\nada aqui\Project_Alpha-modules.Standard.xml) XMLF(No,&
+8000,C:\Alunos\Ride7\nada aqui\Project_Alpha-flash.Standard.xml) 
 
 
 INPUT MODULES INCLUDED
-  C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\BATTLESHIP_PROJECT\PROJEC&
-T_ALPHA\PROJECT_ALPHA.OBJ(PROJECT_ALPHA)
+  C:\ALUNOS\RIDE7\NADA AQUI\PROJECT_ALPHA.OBJ(PROJECT_ALPHA)
 
 ***WARNING 21: EMPTY RELOCATABLE SEGMENT
    -SEGMENT: ?PR?PROJECT_ALPHA(PROJECT_ALPHA)
 
 
-LINK MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\BATTLES&
-HIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
+LINK MAP OF MODULE: C:\ALUNOS\RIDE7\NADA AQUI\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
 
     TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
     ----     ----       ------    ----------     ------------
@@ -32,47 +27,48 @@ HIP_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
              0003H      00FDH                    *** GAP ***
     CODE     0100H      000DH     ABSOLUTE       
              010DH      00F3H                    *** GAP ***
-    CODE     0200H      007FH     ABSOLUTE       
-             027FH      0181H                    *** GAP ***
-    CODE     0400H      000FH     ABSOLUTE       
-             040FH      00F1H                    *** GAP ***
-    CODE     0500H      000EH     ABSOLUTE       
-             050EH      00F2H                    *** GAP ***
-    CODE     0600H      000CH     ABSOLUTE       
-             060CH      00F4H                    *** GAP ***
-    CODE     0700H      000CH     ABSOLUTE       
-             070CH      00F4H                    *** GAP ***
-    CODE     0800H      0007H     ABSOLUTE       
-             0807H      00F9H                    *** GAP ***
-    CODE     0900H      0019H     ABSOLUTE       
-             0919H      00E7H                    *** GAP ***
-    CODE     0A00H      001AH     ABSOLUTE       
-             0A1AH      00E6H                    *** GAP ***
-    CODE     0B00H      001BH     ABSOLUTE       
-             0B1BH      01E5H                    *** GAP ***
-    CODE     0D00H      0009H     ABSOLUTE       
-             0D09H      00F7H                    *** GAP ***
+    CODE     0200H      01A4H     ABSOLUTE       
+             03A4H      005CH                    *** GAP ***
+    CODE     0400H      0012H     ABSOLUTE       
+             0412H      00EEH                    *** GAP ***
+    CODE     0500H      0011H     ABSOLUTE       
+             0511H      00EFH                    *** GAP ***
+    CODE     0600H      000FH     ABSOLUTE       
+             060FH      00F1H                    *** GAP ***
+    CODE     0700H      000FH     ABSOLUTE       
+             070FH      00F1H                    *** GAP ***
+    CODE     0800H      000AH     ABSOLUTE       
+             080AH      00F6H                    *** GAP ***
+    CODE     0900H      0052H     ABSOLUTE       
+             0952H      00AEH                    *** GAP ***
+    CODE     0A00H      001DH     ABSOLUTE       
+             0A1DH      00E3H                    *** GAP ***
+    CODE     0B00H      001EH     ABSOLUTE       
+             0B1EH      01E2H                    *** GAP ***
+    CODE     0D00H      0010H     ABSOLUTE       
+             0D10H      00F0H                    *** GAP ***
     CODE     0E00H      000AH     ABSOLUTE       
+             0E0AH      00F6H                    *** GAP ***
+    CODE     0F00H      0019H     ABSOLUTE       
+             0F19H      00E7H                    *** GAP ***
+    CODE     1000H      0017H     ABSOLUTE       
 
 EXECUTABLE SUMMARY:
 -------------------
     Total INTERNAL RAM storage requirement:  0008H (8)
     Total EXTERNAL RAM storage requirement:  0000H (0)
-    Total     CODE     storage requirement:  012CH (300)
+    Total     CODE     storage requirement:  02D6H (726)
 Note:  Summary does not include dynamic stack requirements
 
 
-REFERENCE MAP OF MODULE: C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\BATTLESHIP_PROJECT\&
-PROJECT_ALPHA\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
+REFERENCE MAP OF MODULE: C:\ALUNOS\RIDE7\NADA AQUI\PROJECT_ALPHA.AOF (PROJECT_ALPHA)
 
 SEGMENT                           BI_GROUP            DT_GROUP             ID_GROUP             XD_GROUP
   +--> CALLED SEGMENT          START    LENGTH     START    LENGTH     START    LENGTH     START    LENGTH
 --------------------------------------------------------------------------------------
 
-SYMBOL TABLE FOR C:\MEIRELLES\FEI\MICROPROCESSADOR_MICROCONTROLADOR\BATTLESHIP_PROJECT\BATTLESHIP&
-_PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
--------------------------------------------------------------------------------------------------&
---------------------------------------------------------
+SYMBOL TABLE FOR C:\ALUNOS\RIDE7\NADA AQUI\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
+----------------------------------------------------------------------------
 
     VALUE              TYPE               NAME
     -----              ----               ----
@@ -82,46 +78,53 @@ _PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	D:0080H            SYMBOL             P0
 	C:0A00H            SYMBOL             XYP
 	D:0090H            SYMBOL             P1
-	C:024DH            SYMBOL             JUMPBD
+	C:025FH            SYMBOL             JUMPBD
 	D:00F0H            SYMBOL             B
 	D:00A0H            SYMBOL             P2
+	C:02F3H            SYMBOL             JUMPBL_GAME
+	C:0F00H            SYMBOL             SHIPS_ON
 	B:00BCH            SYMBOL             PS
 	D:0081H            SYMBOL             SP
 	D:00B0H            SYMBOL             P3
-	C:070BH            SYMBOL             BR_1
+	C:070EH            SYMBOL             BR_1
 	B:00B4H            SYMBOL             T0
 	B:00D6H            SYMBOL             AC
-	C:0D02H            SYMBOL             WAIT_1
+	C:0D05H            SYMBOL             WAIT_1
 	C:0200H            SYMBOL             MAIN
 	B:009CH            SYMBOL             REN
 	B:00B5H            SYMBOL             T1
 	B:00D2H            SYMBOL             OV
+	C:0D07H            SYMBOL             WAIT_2
 	C:0500H            SYMBOL             BD
 	B:00AFH            SYMBOL             EA
-	C:040EH            SYMBOL             BU_1
+	C:0411H            SYMBOL             BU_1
 	D:00E0H            SYMBOL             ACC
+	C:1000H            SYMBOL             SHIPS_ON_FIRE
 	C:0900H            SYMBOL             BF
+	C:02FBH            SYMBOL             JUMPBR_GAME
 	B:00B6H            SYMBOL             WR
 	B:00A9H            SYMBOL             ET0
-	C:0255H            SYMBOL             JUMPBL
+	C:0267H            SYMBOL             JUMPBL
 	B:00ABH            SYMBOL             ET1
 	B:008DH            SYMBOL             TF0
 	C:0233H            SYMBOL             PLAYER1_START
 	B:008FH            SYMBOL             TF1
+	C:02E3H            SYMBOL             JUMPBU_GAME
+	C:02A1H            SYMBOL             PLAYER2_START
 	B:009AH            SYMBOL             RB8
 	D:008CH            SYMBOL             TH0
 	B:00A8H            SYMBOL             EX0
 	B:0088H            SYMBOL             IT0
 	D:008DH            SYMBOL             TH1
-	C:0B11H            SYMBOL             CURSOR_1
+	C:0B14H            SYMBOL             CURSOR_1
 	C:0600H            SYMBOL             BL
 	B:009BH            SYMBOL             TB8
 	B:00B0H            SYMBOL             RXD
 	B:00AAH            SYMBOL             EX1
 	B:008AH            SYMBOL             IT1
 	D:00A8H            SYMBOL             IE
-	C:0B16H            SYMBOL             CURSOR_2
-	C:025DH            SYMBOL             JUMPBR
+	C:0B19H            SYMBOL             CURSOR_2
+	C:026FH            SYMBOL             JUMPBR
 	C:0C00H            SYMBOL             BLINK
 	B:009FH            SYMBOL             SM0
 	B:00B1H            SYMBOL             TXD
@@ -129,15 +132,19 @@ _PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	D:0099H            SYMBOL             SBUF
 	D:008AH            SYMBOL             TL0
 	D:0087H            SYMBOL             PCON
-	C:0265H            SYMBOL             JUMPBS
-	C:0A11H            SYMBOL             XYP_1
+	C:036CH            SYMBOL             END_GAME_LOOSE
+	C:0277H            SYMBOL             JUMPBS
+	C:0A14H            SYMBOL             XYP_1
 	B:009EH            SYMBOL             SM1
 	D:008BH            SYMBOL             TL1
-	C:0A16H            SYMBOL             XYP_2
+	C:0A19H            SYMBOL             XYP_2
 	C:0100H            SYMBOL             HARD_INIT
 	B:009DH            SYMBOL             SM2
-	C:0245H            SYMBOL             JUMPBU
+	C:02BFH            SYMBOL             GAME_LOOP
+	C:0257H            SYMBOL             JUMPBU
+	C:0F0DH            SYMBOL             SHIPS_ON_1
 	D:0098H            SYMBOL             SCON
+	C:0F18H            SYMBOL             SHIPS_ON_2
 	C:0700H            SYMBOL             BR
 	B:00B9H            SYMBOL             PT0
 	D:0089H            SYMBOL             TMOD
@@ -146,30 +153,35 @@ _PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	C:0800H            SYMBOL             BS
 	B:00BBH            SYMBOL             PT1
 	B:00D3H            SYMBOL             RS0
-	C:050DH            SYMBOL             BD_1
+	C:0510H            SYMBOL             BD_1
 	B:00B7H            SYMBOL             RD
 	B:008CH            SYMBOL             TR0
 	B:00D4H            SYMBOL             RS1
 	B:00D5H            SYMBOL             F0
 	C:0400H            SYMBOL             BU
 	B:008EH            SYMBOL             TR1
-	C:0909H            SYMBOL             BF_1
+	C:0907H            SYMBOL             BF_1
 	B:00B8H            SYMBOL             PX0
 	B:00ACH            SYMBOL             ES
+	C:1007H            SYMBOL             SHIPS_ON_FIRE1
 	C:0913H            SYMBOL             BF_2
 	B:00BAH            SYMBOL             PX1
 	D:00B8H            SYMBOL             IP
+	C:1013H            SYMBOL             SHIPS_ON_FIRE2
 	D:00D0H            SYMBOL             PSW
+	C:02EBH            SYMBOL             JUMPBD_GAME
 	B:0098H            SYMBOL             RI
 	B:00B2H            SYMBOL             INT0
 	B:00B3H            SYMBOL             INT1
 	B:00D7H            SYMBOL             CY
 	D:0083H            SYMBOL             DPH
+	C:0303H            SYMBOL             JUMPBF_GAME
 	B:0099H            SYMBOL             TI
-	C:0E00H            SYMBOL             ATTLED
 	C:0B00H            SYMBOL             CURSOR
-	C:060BH            SYMBOL             BL_1
+	C:0E00H            SYMBOL             ATTLED
+	C:060EH            SYMBOL             BL_1
 	B:0089H            SYMBOL             IE0
+	C:0334H            SYMBOL             END_GAME_VICTORY
 	B:008BH            SYMBOL             IE1
 	C:0000H            LINE#              20
 	C:0100H            LINE#              28
@@ -177,147 +189,317 @@ _PROJECT\PROJECT_ALPHA\PROJECT_ALPHA.AOF(PROJECT_ALPHA)
 	C:0106H            LINE#              30
 	C:0109H            LINE#              31
 	C:010CH            LINE#              32
-	C:0400H            LINE#              49
-	C:0402H            LINE#              50
+	C:0400H            LINE#              50
 	C:0403H            LINE#              51
 	C:0405H            LINE#              52
-	C:0407H            LINE#              53
-	C:0409H            LINE#              54
+	C:0406H            LINE#              53
+	C:0408H            LINE#              54
 	C:040AH            LINE#              55
 	C:040CH            LINE#              56
-	C:040EH            LINE#              57
-	C:0500H            LINE#              64
-	C:0502H            LINE#              65
-	C:0503H            LINE#              66
-	C:0505H            LINE#              67
-	C:0507H            LINE#              68
-	C:0509H            LINE#              69
-	C:050BH            LINE#              70
-	C:050DH            LINE#              71
-	C:0600H            LINE#              78
-	C:0602H            LINE#              79
-	C:0604H            LINE#              80
-	C:0605H            LINE#              81
-	C:0607H            LINE#              82
-	C:0609H            LINE#              83
-	C:060BH            LINE#              84
-	C:0700H            LINE#              91
-	C:0702H            LINE#              92
-	C:0704H            LINE#              93
-	C:0705H            LINE#              94
-	C:0707H            LINE#              95
-	C:0709H            LINE#              96
-	C:070BH            LINE#              97
-	C:0800H            LINE#              104
-	C:0802H            LINE#              105
-	C:0804H            LINE#              106
-	C:0806H            LINE#              107
-	C:0900H            LINE#              114
-	C:0903H            LINE#              115
-	C:0905H            LINE#              116
-	C:0907H            LINE#              117
-	C:0909H            LINE#              119
-	C:090AH            LINE#              120
-	C:090BH            LINE#              121
-	C:090DH            LINE#              122
-	C:090FH            LINE#              123
-	C:0910H            LINE#              124
-	C:0912H            LINE#              125
-	C:0913H            LINE#              128
-	C:0914H            LINE#              129
-	C:0916H            LINE#              130
-	C:0918H            LINE#              131
-	C:0A00H            LINE#              138
-	C:0A02H            LINE#              139
-	C:0A04H            LINE#              140
-	C:0A06H            LINE#              141
-	C:0A07H            LINE#              143
-	C:0A09H            LINE#              144
-	C:0A0BH            LINE#              145
-	C:0A0CH            LINE#              146
-	C:0A0DH            LINE#              147
-	C:0A0FH            LINE#              149
-	C:0A11H            LINE#              151
-	C:0A12H            LINE#              152
-	C:0A13H            LINE#              153
-	C:0A14H            LINE#              154
-	C:0A16H            LINE#              156
-	C:0A17H            LINE#              157
-	C:0A18H            LINE#              158
-	C:0A19H            LINE#              159
-	C:0B00H            LINE#              166
-	C:0B02H            LINE#              167
-	C:0B04H            LINE#              168
-	C:0B06H            LINE#              169
-	C:0B07H            LINE#              171
-	C:0B09H            LINE#              172
-	C:0B0BH            LINE#              173
-	C:0B0CH            LINE#              174
-	C:0B0DH            LINE#              175
-	C:0B0FH            LINE#              177
-	C:0B11H            LINE#              180
-	C:0B12H            LINE#              181
-	C:0B13H            LINE#              182
-	C:0B14H            LINE#              183
-	C:0B16H            LINE#              186
-	C:0B18H            LINE#              187
-	C:0B1AH            LINE#              188
-	C:0D00H            LINE#              203
-	C:0D02H            LINE#              205
-	C:0D04H            LINE#              206
-	C:0D06H            LINE#              207
-	C:0D08H            LINE#              208
-	C:0E00H            LINE#              214
-	C:0E03H            LINE#              215
-	C:0E06H            LINE#              216
-	C:0E09H            LINE#              217
-	C:0200H            LINE#              223
-	C:0203H            LINE#              226
-	C:0206H            LINE#              227
-	C:0209H            LINE#              228
-	C:020CH            LINE#              229
-	C:020FH            LINE#              230
-	C:0212H            LINE#              231
-	C:0215H            LINE#              232
-	C:0218H            LINE#              233
-	C:021BH            LINE#              234
-	C:021EH            LINE#              235
-	C:0221H            LINE#              236
-	C:0224H            LINE#              237
-	C:0227H            LINE#              238
-	C:022AH            LINE#              239
-	C:022DH            LINE#              240
-	C:0230H            LINE#              241
-	C:0233H            LINE#              247
-	C:0236H            LINE#              248
-	C:0238H            LINE#              249
-	C:023AH            LINE#              251
-	C:023DH            LINE#              253
-	C:023FH            LINE#              254
-	C:0242H            LINE#              255
-	C:0245H            LINE#              257
-	C:0247H            LINE#              258
-	C:024AH            LINE#              259
-	C:024DH            LINE#              261
-	C:024FH            LINE#              262
-	C:0252H            LINE#              263
-	C:0255H            LINE#              265
-	C:0257H            LINE#              266
-	C:025AH            LINE#              267
-	C:025DH            LINE#              269
-	C:025FH            LINE#              270
-	C:0262H            LINE#              271
-	C:0265H            LINE#              273
-	C:0267H            LINE#              274
-	C:0269H            LINE#              276
-	C:026CH            LINE#              277
-	C:026FH            LINE#              278
-	C:0272H            LINE#              280
-	C:0275H            LINE#              281
-	C:0278H            LINE#              283
-	C:027AH            LINE#              284
-	C:027BH            LINE#              285
-	C:027DH            LINE#              286
+	C:040DH            LINE#              57
+	C:040FH            LINE#              58
+	C:0411H            LINE#              59
+	C:0500H            LINE#              66
+	C:0503H            LINE#              67
+	C:0505H            LINE#              68
+	C:0506H            LINE#              69
+	C:0508H            LINE#              70
+	C:050AH            LINE#              71
+	C:050CH            LINE#              72
+	C:050EH            LINE#              73
+	C:0510H            LINE#              74
+	C:0600H            LINE#              81
+	C:0603H            LINE#              82
+	C:0605H            LINE#              83
+	C:0607H            LINE#              84
+	C:0608H            LINE#              85
+	C:060AH            LINE#              86
+	C:060CH            LINE#              87
+	C:060EH            LINE#              88
+	C:0700H            LINE#              95
+	C:0703H            LINE#              96
+	C:0705H            LINE#              97
+	C:0707H            LINE#              98
+	C:0708H            LINE#              99
+	C:070AH            LINE#              100
+	C:070CH            LINE#              101
+	C:070EH            LINE#              102
+	C:0800H            LINE#              109
+	C:0803H            LINE#              110
+	C:0805H            LINE#              111
+	C:0807H            LINE#              112
+	C:0809H            LINE#              113
+	C:0900H            LINE#              120
+	C:0903H            LINE#              121
+	C:0905H            LINE#              122
+	C:0907H            LINE#              124
+	C:0909H            LINE#              125
+	C:090AH            LINE#              126
+	C:090BH            LINE#              127
+	C:090DH            LINE#              128
+	C:090FH            LINE#              129
+	C:0910H            LINE#              130
+	C:0912H            LINE#              131
+	C:0913H            LINE#              133
+	C:0914H            LINE#              134
+	C:0916H            LINE#              135
+	C:0918H            LINE#              137
+	C:091AH            LINE#              138
+	C:091CH            LINE#              139
+	C:091EH            LINE#              140
+	C:0921H            LINE#              141
+	C:0924H            LINE#              142
+	C:0927H            LINE#              143
+	C:092AH            LINE#              144
+	C:092DH            LINE#              145
+	C:0930H            LINE#              146
+	C:0933H            LINE#              147
+	C:0936H            LINE#              148
+	C:0939H            LINE#              149
+	C:093CH            LINE#              150
+	C:093FH            LINE#              151
+	C:0942H            LINE#              152
+	C:0945H            LINE#              153
+	C:0948H            LINE#              154
+	C:094AH            LINE#              155
+	C:094CH            LINE#              156
+	C:094EH            LINE#              157
+	C:0951H            LINE#              158
+	C:0A00H            LINE#              165
+	C:0A03H            LINE#              166
+	C:0A05H            LINE#              167
+	C:0A07H            LINE#              168
+	C:0A09H            LINE#              169
+	C:0A0AH            LINE#              171
+	C:0A0CH            LINE#              172
+	C:0A0EH            LINE#              173
+	C:0A0FH            LINE#              174
+	C:0A10H            LINE#              175
+	C:0A12H            LINE#              177
+	C:0A14H            LINE#              179
+	C:0A15H            LINE#              180
+	C:0A16H            LINE#              181
+	C:0A17H            LINE#              182
+	C:0A19H            LINE#              184
+	C:0A1AH            LINE#              185
+	C:0A1BH            LINE#              186
+	C:0A1CH            LINE#              187
+	C:0B00H            LINE#              194
+	C:0B03H            LINE#              195
+	C:0B05H            LINE#              196
+	C:0B07H            LINE#              197
+	C:0B09H            LINE#              198
+	C:0B0AH            LINE#              200
+	C:0B0CH            LINE#              201
+	C:0B0EH            LINE#              202
+	C:0B0FH            LINE#              203
+	C:0B10H            LINE#              204
+	C:0B12H            LINE#              206
+	C:0B14H            LINE#              209
+	C:0B15H            LINE#              210
+	C:0B16H            LINE#              211
+	C:0B17H            LINE#              212
+	C:0B19H            LINE#              215
+	C:0B1BH            LINE#              216
+	C:0B1DH            LINE#              217
+	C:0D00H            LINE#              232
+	C:0D03H            LINE#              233
+	C:0D05H            LINE#              235
+	C:0D07H            LINE#              237
+	C:0D09H            LINE#              239
+	C:0D0BH            LINE#              240
+	C:0D0DH            LINE#              241
+	C:0D0FH            LINE#              242
+	C:0E00H            LINE#              248
+	C:0E03H            LINE#              249
+	C:0E06H            LINE#              250
+	C:0E09H            LINE#              251
+	C:0F00H            LINE#              257
+	C:0F03H            LINE#              258
+	C:0F05H            LINE#              259
+	C:0F07H            LINE#              260
+	C:0F08H            LINE#              261
+	C:0F0AH            LINE#              262
+	C:0F0BH            LINE#              265
+	C:0F0DH            LINE#              269
+	C:0F0FH            LINE#              270
+	C:0F12H            LINE#              271
+	C:0F15H            LINE#              272
+	C:0F16H            LINE#              275
+	C:0F18H            LINE#              278
+	C:1000H            LINE#              286
+	C:1003H            LINE#              287
+	C:1005H            LINE#              288
+	C:1007H            LINE#              291
+	C:1008H            LINE#              292
+	C:100BH            LINE#              293
+	C:100DH            LINE#              294
+	C:1010H            LINE#              296
+	C:1013H            LINE#              298
+	C:1014H            LINE#              299
+	C:1016H            LINE#              300
+	C:0200H            LINE#              307
+	C:0203H            LINE#              310
+	C:0206H            LINE#              311
+	C:0209H            LINE#              312
+	C:020CH            LINE#              313
+	C:020FH            LINE#              314
+	C:0212H            LINE#              315
+	C:0215H            LINE#              316
+	C:0218H            LINE#              317
+	C:021BH            LINE#              318
+	C:021EH            LINE#              319
+	C:0221H            LINE#              320
+	C:0224H            LINE#              321
+	C:0227H            LINE#              322
+	C:022AH            LINE#              323
+	C:022DH            LINE#              324
+	C:0230H            LINE#              325
+	C:0233H            LINE#              331
+	C:0236H            LINE#              332
+	C:0239H            LINE#              333
+	C:023BH            LINE#              334
+	C:023CH            LINE#              335
+	C:023EH            LINE#              336
+	C:0240H            LINE#              337
+	C:0243H            LINE#              338
+	C:0245H            LINE#              339
+	C:0246H            LINE#              340
+	C:0248H            LINE#              341
+	C:024AH            LINE#              342
+	C:024CH            LINE#              344
+	C:024FH            LINE#              346
+	C:0251H            LINE#              347
+	C:0254H            LINE#              348
+	C:0257H            LINE#              350
+	C:0259H            LINE#              351
+	C:025CH            LINE#              352
+	C:025FH            LINE#              354
+	C:0261H            LINE#              355
+	C:0264H            LINE#              356
+	C:0267H            LINE#              358
+	C:0269H            LINE#              359
+	C:026CH            LINE#              360
+	C:026FH            LINE#              362
+	C:0271H            LINE#              363
+	C:0274H            LINE#              364
+	C:0277H            LINE#              366
+	C:0279H            LINE#              367
+	C:027AH            LINE#              368
+	C:027CH            LINE#              369
+	C:027EH            LINE#              370
+	C:0281H            LINE#              371
+	C:0283H            LINE#              372
+	C:0284H            LINE#              373
+	C:0286H            LINE#              374
+	C:0288H            LINE#              376
+	C:028BH            LINE#              377
+	C:028EH            LINE#              378
+	C:0291H            LINE#              380
+	C:0294H            LINE#              381
+	C:0297H            LINE#              383
+	C:029AH            LINE#              385
+	C:029CH            LINE#              386
+	C:029DH            LINE#              387
+	C:029FH            LINE#              388
+	C:02A1H            LINE#              396
+	C:02A4H            LINE#              397
+	C:02A7H            LINE#              398
+	C:02AAH            LINE#              399
+	C:02ADH            LINE#              400
+	C:02B0H            LINE#              401
+	C:02B3H            LINE#              402
+	C:02B6H            LINE#              403
+	C:02B9H            LINE#              404
+	C:02BCH            LINE#              405
+	C:02BFH            LINE#              409
+	C:02C2H            LINE#              410
+	C:02C5H            LINE#              411
+	C:02C7H            LINE#              412
+	C:02C8H            LINE#              413
+	C:02CAH            LINE#              414
+	C:02CCH            LINE#              415
+	C:02CFH            LINE#              416
+	C:02D1H            LINE#              417
+	C:02D2H            LINE#              418
+	C:02D4H            LINE#              419
+	C:02D6H            LINE#              420
+	C:02D8H            LINE#              422
+	C:02DBH            LINE#              424
+	C:02DDH            LINE#              425
+	C:02E0H            LINE#              426
+	C:02E3H            LINE#              428
+	C:02E5H            LINE#              429
+	C:02E8H            LINE#              430
+	C:02EBH            LINE#              432
+	C:02EDH            LINE#              433
+	C:02F0H            LINE#              434
+	C:02F3H            LINE#              436
+	C:02F5H            LINE#              437
+	C:02F8H            LINE#              438
+	C:02FBH            LINE#              440
+	C:02FDH            LINE#              441
+	C:0300H            LINE#              442
+	C:0303H            LINE#              444
+	C:0305H            LINE#              445
+	C:0306H            LINE#              446
+	C:0308H            LINE#              447
+	C:030AH            LINE#              448
+	C:030DH            LINE#              449
+	C:030FH            LINE#              450
+	C:0310H            LINE#              451
+	C:0312H            LINE#              452
+	C:0314H            LINE#              455
+	C:0317H            LINE#              456
+	C:031AH            LINE#              457
+	C:031DH            LINE#              459
+	C:0320H            LINE#              460
+	C:0323H            LINE#              462
+	C:0326H            LINE#              465
+	C:0328H            LINE#              466
+	C:0329H            LINE#              467
+	C:032BH            LINE#              468
+	C:032DH            LINE#              471
+	C:032FH            LINE#              472
+	C:0331H            LINE#              473
+	C:0334H            LINE#              476
+	C:0337H            LINE#              477
+	C:033AH            LINE#              478
+	C:033DH            LINE#              479
+	C:0340H            LINE#              480
+	C:0343H            LINE#              481
+	C:0346H            LINE#              482
+	C:0349H            LINE#              483
+	C:034CH            LINE#              484
+	C:034FH            LINE#              485
+	C:0352H            LINE#              486
+	C:0355H            LINE#              487
+	C:0358H            LINE#              488
+	C:035BH            LINE#              489
+	C:035EH            LINE#              490
+	C:0361H            LINE#              491
+	C:0364H            LINE#              492
+	C:0367H            LINE#              493
+	C:036AH            LINE#              494
+	C:036CH            LINE#              497
+	C:036FH            LINE#              498
+	C:0372H            LINE#              499
+	C:0375H            LINE#              500
+	C:0378H            LINE#              501
+	C:037BH            LINE#              502
+	C:037EH            LINE#              503
+	C:0381H            LINE#              504
+	C:0384H            LINE#              505
+	C:0387H            LINE#              506
+	C:038AH            LINE#              507
+	C:038DH            LINE#              508
+	C:0390H            LINE#              509
+	C:0393H            LINE#              510
+	C:0396H            LINE#              511
+	C:0399H            LINE#              512
+	C:039CH            LINE#              513
+	C:039FH            LINE#              514
+	C:03A2H            LINE#              515
 	-------            ENDMOD             PROJECT_ALPHA
 
 UNCALLED SEGMENTS:

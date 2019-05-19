@@ -1,70 +1,20 @@
 
 <Debug>
-	<Views>
-		<View File=".\Project_Alpha.a51" Line="207" Index="0" focus="1" />
-			
-	</Views>
-	<BookMarks>
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-		<BookMark File="" Line="0" />
-			
-	</BookMarks>
-	<Grep>
-		<GrepIncludeSub>yes</GrepIncludeSub>
-		<GrepMatchCase>no</GrepMatchCase>
-		<GrepMatchWhole>no</GrepMatchWhole>
-		<GrepRegExp>no</GrepRegExp>
-		<GrepReplaceMode>no</GrepReplaceMode>
-		<GrepFileTypes>
-			<GrepFileTypesValue>*.c;*.h</GrepFileTypesValue>
-			<GrepFileType>*.c;*.h</GrepFileType>
-					
-		</GrepFileTypes>
-		<GrepFindWhat>
-			<GrepFindWhatValue/>
-					
-		</GrepFindWhat>
-		<GrepFindWhere>
-			<GrepFindWhereValue>Application Files</GrepFindWhereValue>
-			<GrepPathStr>Application Files</GrepPathStr>
-			<GrepPathStr>Application Path</GrepPathStr>
-			<GrepPathStr>Project Files</GrepPathStr>
-					
-		</GrepFindWhere>
-		<GrepReplaceWhat>
-			<GrepReplaceWhatValue/>
-					
-		</GrepReplaceWhat>
-			
-	</Grep>
-	<FindStrings/>
-	<ReplaceStrings/>
 	<Project_Alpha>
-		<CodeView TopRow="510" Focus="518" Selected="yes" >
-			<DisplayOptions ShowSourceLines="1" CodeCoverageHex="0" ColoredJmp="0" />
+		<DataView Focus="0" TopRow="0" NbPerLine="8" />
+		<CodeView TopRow="2320" Focus="2323" >
 			<CodeReport>
 				<0>112</0>
-				<1>130</1>
-				<2>70</2>
-				<3>390</3>
-				<4>71</4>
-				<5>149</5>
+				<1>64</1>
+				<2>34</2>
+				<3>201</3>
+				<4>36</4>
+				<5>81</5>
+																												
 			</CodeReport>
+																				
 		</CodeView>
-		<Peripheral PaneID="1920233565" />
-		<Peripheral PaneID="1920233564" />
-		<DataView Focus="512" TopRow="0" NbPerLine="8" PaneID="924648467" />
-		<Peripheral PaneID="2020374067" />
-		<Peripheral PaneID="1920233566" Selected="yes" />
-		<Peripheral PaneID="1920233567" />
+												
 	</Project_Alpha>
 	<Flags>
 		<Report>
@@ -80,8 +30,57 @@
 				<Col Type="PT_STRING" Header="Condition" sizeCache="DDDDDDDDDDDDDDDDDDDDDDDD" AutoSize="1" Edit="0" Sortable="0" />
 				<Col Type="PT_STRING" Header="Condexpr" sizeCache="DD" AutoSize="1" Edit="0" Sortable="0" Visible="0" />
 				<Col Type="PT_STRING" Header="Condcount" sizeCache="DD" AutoSize="1" Edit="0" Sortable="0" Visible="0" />
+							
 			</Def>
 			<Rows/>
+					
 		</Report>
+			
 	</Flags>
+	<Views>
+		<View File=".\Project_Alpha.a51" Line="459" Index="0" focus="1" />
+	</Views>
+	<BookMarks>
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+		<BookMark File="" Line="0" />
+	</BookMarks>
+	<Grep>
+		<GrepIncludeSub>yes</GrepIncludeSub>
+		<GrepMatchCase>no</GrepMatchCase>
+		<GrepMatchWhole>no</GrepMatchWhole>
+		<GrepRegExp>no</GrepRegExp>
+		<GrepReplaceMode>no</GrepReplaceMode>
+		<GrepFileTypes>
+			<GrepFileTypesValue>*.c;*.h</GrepFileTypesValue>
+			<GrepFileType>*.c;*.h</GrepFileType>
+		</GrepFileTypes>
+		<GrepFindWhat>
+			<GrepFindWhatValue/>
+		</GrepFindWhat>
+		<GrepFindWhere>
+			<GrepFindWhereValue>Application Files</GrepFindWhereValue>
+			<GrepPathStr>Application Files</GrepPathStr>
+			<GrepPathStr>Application Path</GrepPathStr>
+			<GrepPathStr>Project Files</GrepPathStr>
+		</GrepFindWhere>
+		<GrepReplaceWhat>
+			<GrepReplaceWhatValue/>
+		</GrepReplaceWhat>
+	</Grep>
+	<FindStrings>
+		<Find>;LCALL WAIT</Find>
+		<Find>LCALL WAIT</Find>
+		<Find>wait</Find>
+		<Find>MOV PSW,00h</Find>
+		<Find>MOV PSW, 00h</Find>
+	</FindStrings>
+	<ReplaceStrings/>
 </Debug>
